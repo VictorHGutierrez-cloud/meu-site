@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payoneer & LexBridge: Strategic Alliance for Brazilian Expansion</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Faz o gráfico ser responsivo */
+    .chart-container {
+      position: relative;
+      height: 300px;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#f9f8f6] text-gray-900">
+  <!-- Header fixo -->
+  <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-900">Payoneer & LexBridge</h1>
+      <ul class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <li><a href="#market" class="hover:text-blue-900">Market</a></li>
+        <li><a href="#pix" class="hover:text-blue-900">Pix Growth</a></li>
+        <li><a href="#solutions" class="hover:text-blue-900">Solutions</a></li>
+        <li><a href="#cta" class="hover:text-blue-900">Alliance</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-600 text-white pt-32 pb-20 px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Strategic Alliance for Brazilian Expansion</h2>
+      <p class="text-lg md:text-xl mb-8">
+        A partnership built to simplify global payments, reduce risk, and unlock opportunities in Brazil.
+      </p>
+      <a href="#market" class="bg-yellow-400 text-blue-900 font-semibold px-6 py-3 rounded-xl shadow hover:bg-yellow-300 transition">
+        Discover the Opportunity
+      </a>
+    </div>
+  </section>
+  <!-- Market Section -->
+  <section id="market" class="py-20 bg-white px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">The Brazilian Market: High Potential, High Complexity</h3>
+      <p class="text-base md:text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+        Brazil presents a massive opportunity for U.S. companies, but navigating its notorious "Custo Brasil" requires an integrated operational approach.
+      </p>
+
+      <!-- Grid de estatísticas -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 stat-card">
+          <div class="text-4xl md:text-5xl font-bold text-yellow-400" data-target="65">0</div>
+          <p class="mt-2 font-semibold text-blue-900">U.S. Companies Interested</p>
+          <p class="text-gray-500 text-sm mt-1">without a presence in Brazil are willing to start operations.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 stat-card">
+          <div class="text-4xl md:text-5xl font-bold text-yellow-400" data-target="89">0</div>
+          <p class="mt-2 font-semibold text-blue-900">Established U.S. Companies</p>
+          <p class="text-gray-500 text-sm mt-1">plan to expand their existing operations in the country.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 stat-card">
+          <div class="text-4xl md:text-5xl font-bold text-yellow-400" data-target="9553">0</div>
+          <p class="mt-2 font-semibold text-blue-900">Brazilian Companies Exporting</p>
+          <p class="text-gray-500 text-sm mt-1">to the U.S., showing strong trade relations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Script para animar números -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function animateValue(obj, start, end, duration) {
+        let startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const progress = Math.min((timestamp - startTime) / duration, 1);
+          obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+          if (progress < 1) window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = +el.getAttribute('data-target');
+            animateValue(el, 0, target, 1500);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+    });
+  </script>
+  <!-- Pix Growth Section -->
+  <section id="pix" class="py-20 bg-gray-50 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">The Fintech Revolution: Pix Growth</h3>
+      <p class="text-base md:text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+        Brazil’s financial landscape is transforming fast. Innovations like Pix make modern, instant payment infrastructure essential for success.
+      </p>
+
+      <!-- Gráfico Chart.js -->
+      <div class="chart-container mx-auto mb-4">
+        <canvas id="pixChart"></canvas>
+      </div>
+      <p class="text-sm text-gray-500">Pix transactions grew by 53% in 2024, solidifying its role as the primary payment rail in Brazil.</p>
+    </div>
+
+    <!-- Script Chart.js -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const ctx = document.getElementById('pixChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2023 Transactions', '2024 Transactions (Est.)'],
+            datasets: [{
+              label: 'Pix Transactions (in Billions)',
+              data: [41.8, 64],
+              backgroundColor: ['rgba(212,175,55,0.6)', 'rgba(0,51,102,0.8)'],
+              borderColor: ['rgba(212,175,55,1)', 'rgba(0,51,102,1)'],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Transactions (Billions)' }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.dataset.label + ': ' + context.parsed.y + ' Billion';
+                  }
+                }
+              }
+            }
+          }
+        });
+      });
+    </script>
+  <!-- Solutions Section -->
+  <section id="solutions" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Integrated Solutions for Core Pain Points</h3>
+      <p class="text-base md:text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+        The LexBridge-Payoneer alliance addresses three critical challenges U.S. companies face in Brazil.
+      </p>
+
+      <!-- Tabs -->
+      <div class="flex justify-center mb-8 space-x-4 flex-wrap">
+        <button class="tab bg-blue-100 text-blue-900 px-4 py-2 rounded-lg font-semibold active" data-tab="compliance">Compliance & Labor</button>
+        <button class="tab bg-blue-100 text-blue-900 px-4 py-2 rounded-lg font-semibold" data-tab="fx">FX & Payments</button>
+        <button class="tab bg-blue-100 text-blue-900 px-4 py-2 rounded-lg font-semibold" data-tab="onboarding">Onboarding & Scale</button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div id="compliance" class="tab-content">
+        <div class="overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b">
+                <th class="p-4 font-semibold">Challenge</th>
+                <th class="p-4 font-semibold">Operational Pain Point</th>
+                <th class="p-4 font-semibold">Alliance Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="p-4 font-medium">Labor Law (CLT) & Misclassification</td>
+                <td class="p-4 text-red-600">Fines, lawsuits, and reputational damage</td>
+                <td class="p-4 text-green-700">Payoneer EOR + LexBridge legal counsel</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-medium">Tax & Financial Reporting</td>
+                <td class="p-4 text-red-600">High administrative burden & non-compliance</td>
+                <td class="p-4 text-green-700">Automated tax forms + strategic compliance advice</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="fx" class="tab-content hidden">
+        <div class="overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b">
+                <th class="p-4 font-semibold">Criterion</th>
+                <th class="p-4 font-semibold text-red-600">Traditional</th>
+                <th class="p-4 font-semibold text-green-700">Payoneer Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="p-4">Speed</td><td class="p-4">Days/Weeks</td><td class="p-4 font-bold">Seconds/Minutes</td></tr>
+              <tr class="border-b"><td class="p-4">Cost</td><td class="p-4">High Fees</td><td class="p-4 font-bold">Low Competitive Rates</td></tr>
+              <tr class="border-b"><td class="p-4">Transparency</td><td class="p-4">Limited</td><td class="p-4 font-bold">Full Transparency</td></tr>
+              <tr><td class="p-4">Complexity</td><td class="p-4">Manual & Multi-bank</td><td class="p-4 font-bold">Automated Platform</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="onboarding" class="tab-content hidden">
+        <div class="overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b">
+                <th class="p-4 font-semibold">Action</th>
+                <th class="p-4 font-semibold text-red-600">Traditional</th>
+                <th class="p-4 font-semibold text-green-700">Payoneer Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b"><td class="p-4">Legal Entity</td><td class="p-4">Months/High Cost</td><td class="p-4 font-bold">Not Required, Payoneer as EOR</td></tr>
+              <tr class="border-b"><td class="p-4">Contracts</td><td class="p-4">Requires Local Counsel</td><td class="p-4 font-bold">Localized, Compliant via Platform</td></tr>
+              <tr><td class="p-4">Payroll & Payments</td><td class="p-4">Complex/Manual</td><td class="p-4 font-bold">Simplified Multi-currency Dashboard</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-12 text-center">
+        <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" class="inline-block bg-yellow-400 text-blue-900 font-bold py-3 px-8 rounded-xl shadow hover:bg-yellow-300 transition">
+          Let's Schedule a Follow-Up
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <p>&copy; 2025 Payoneer Inc. All rights reserved.</p>
+      <p class="text-sm mt-2 opacity-75">Conceptual presentation for strategic partnership with LexBridge.</p>
+    </div>
+  </footer>
+
+  <!-- Script Tabs Interativas -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const target = tab.getAttribute('data-tab');
+          contents.forEach(content => {
+            content.classList.toggle('hidden', content.id !== target);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
