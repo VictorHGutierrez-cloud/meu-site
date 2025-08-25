@@ -165,7 +165,7 @@
     border: none;
     border-radius: 50px;
     padding: 15px 30px;
-    color: white;
+    color: #333;
     font-weight: bold;
     font-size: 16px;
     text-transform: uppercase;
@@ -262,7 +262,7 @@
 }
 
 .nav-link-enhanced:hover {
-    color: white;
+    color: #1e3a8a;
     transform: translateY(-2px);
 }
 
@@ -800,4 +800,55 @@
     .high-contrast .contrast-toggle {
         display: none !important;
     }
+}
+
+/* Base Text Colors - Ensure text is visible by default */
+body {
+    color: #1e293b;
+}
+
+/* Ensure specific text elements are visible by default */
+.text-white {
+    color: #1e293b !important;
+}
+
+.text-gray-100,
+.text-gray-200,
+.text-gray-300,
+.text-gray-400,
+.text-gray-500,
+.text-gray-600,
+.text-gray-700,
+.text-gray-800,
+.text-gray-900 {
+    color: #334155 !important;
+}
+
+/* Ensure headings are visible */
+h1, h2, h3, h4, h5, h6 {
+    color: #0f172a;
+}
+
+.text-2xl,
+.text-3xl,
+.text-4xl,
+.text-5xl,
+.text-6xl {
+    color: #0f172a !important;
+}
+
+/* Ensure paragraphs and body text are visible */
+p {
+    color: #334155;
+}
+
+.text-base,
+.text-lg,
+.text-xl {
+    color: #334155 !important;
+}
+
+/* Ensure links are visible */
+a {
+    color: #1e3a8a;
 }
