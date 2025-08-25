@@ -553,3 +553,251 @@
     background: rgba(245, 158, 11, 0.3);
     color: #1e3a8a;
 }
+
+/* High Contrast Mode - Additional Tailwind Classes */
+.high-contrast .bg-white {
+    background: #000000 !important;
+}
+
+.high-contrast .bg-gray-50,
+.high-contrast .bg-gray-100,
+.high-contrast .bg-gray-200 {
+    background: #333333 !important;
+}
+
+.high-contrast .bg-gray-300,
+.high-contrast .bg-gray-400 {
+    background: #666666 !important;
+}
+
+.high-contrast .bg-gray-500,
+.high-contrast .bg-gray-600,
+.high-contrast .bg-gray-700,
+.high-contrast .bg-gray-800,
+.high-contrast .bg-gray-900 {
+    background: #000000 !important;
+}
+
+.high-contrast .bg-blue-50,
+.high-contrast .bg-blue-100,
+.high-contrast .bg-blue-200 {
+    background: #333333 !important;
+}
+
+.high-contrast .bg-green-50,
+.high-contrast .bg-green-100,
+.high-contrast .bg-green-200 {
+    background: #333333 !important;
+}
+
+.high-contrast .bg-orange-50,
+.high-contrast .bg-orange-100,
+.high-contrast .bg-orange-200 {
+    background: #333333 !important;
+}
+
+/* High Contrast Mode - Text Colors */
+.high-contrast .text-white {
+    color: #ffffff !important;
+}
+
+.high-contrast .text-black {
+    color: #000000 !important;
+}
+
+.high-contrast .text-gray-100,
+.high-contrast .text-gray-200,
+.high-contrast .text-gray-300,
+.high-contrast .text-gray-400 {
+    color: #ffffff !important;
+}
+
+.high-contrast .text-gray-500,
+.high-contrast .text-gray-600,
+.high-contrast .text-gray-700,
+.high-contrast .text-gray-800,
+.high-contrast .text-gray-900 {
+    color: #ffffff !important;
+}
+
+.high-contrast .text-blue-100,
+.high-contrast .text-blue-200,
+.high-contrast .text-blue-300,
+.high-contrast .text-blue-400,
+.high-contrast .text-blue-500,
+.high-contrast .text-blue-600,
+.high-contrast .text-blue-700,
+.high-contrast .text-blue-800,
+.high-contrast .text-blue-900 {
+    color: #ffffff !important;
+}
+
+.high-contrast .text-green-100,
+.high-contrast .text-green-200,
+.high-contrast .text-green-300,
+.high-contrast .text-green-400,
+.high-contrast .text-green-500,
+.high-contrast .text-green-600,
+.high-contrast .text-green-700,
+.high-contrast .text-green-800,
+.high-contrast .text-green-900 {
+    color: #ffffff !important;
+}
+
+.high-contrast .text-orange-100,
+.high-contrast .text-orange-200,
+.high-contrast .text-orange-300,
+.high-contrast .text-orange-400,
+.high-contrast .text-orange-500,
+.high-contrast .text-orange-600,
+.high-contrast .text-orange-700,
+.high-contrast .text-orange-800,
+.high-contrast .text-orange-900 {
+    color: #ffffff !important;
+}
+
+/* High Contrast Mode - Borders */
+.high-contrast .border-gray-100,
+.high-contrast .border-gray-200,
+.high-contrast .border-gray-300,
+.high-contrast .border-gray-400,
+.high-contrast .border-gray-500,
+.high-contrast .border-gray-600,
+.high-contrast .border-gray-700,
+.high-contrast .border-gray-800,
+.high-contrast .border-gray-900 {
+    border-color: #ffffff !important;
+}
+
+.high-contrast .border-blue-100,
+.high-contrast .border-blue-200,
+.high-contrast .border-blue-300,
+.high-contrast .border-blue-400,
+.high-contrast .border-blue-500,
+.high-contrast .border-blue-600,
+.high-contrast .border-blue-700,
+.high-contrast .border-blue-800,
+.high-contrast .border-blue-900 {
+    border-color: #ffffff !important;
+}
+
+/* High Contrast Mode - Shadows */
+.high-contrast .shadow-sm,
+.high-contrast .shadow,
+.high-contrast .shadow-md,
+.high-contrast .shadow-lg,
+.high-contrast .shadow-xl,
+.high-contrast .shadow-2xl {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* High Contrast Mode - Backdrop Blur */
+.high-contrast .backdrop-blur-sm,
+.high-contrast .backdrop-blur,
+.high-contrast .backdrop-blur-md,
+.high-contrast .backdrop-blur-lg,
+.high-contrast .backdrop-blur-xl,
+.high-contrast .backdrop-blur-2xl,
+.high-contrast .backdrop-blur-3xl {
+    backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* High Contrast Mode - Specific Component Overrides */
+.high-contrast .hero-gradient {
+    background: linear-gradient(135deg, #000000 0%, #333333 100%) !important;
+}
+
+.high-contrast .hero-gradient h1,
+.high-contrast .hero-gradient h2,
+.high-contrast .hero-gradient h3,
+.high-contrast .hero-gradient p {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+.high-contrast .hero-gradient a {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+}
+
+.high-contrast .hero-gradient a:hover {
+    background: #ffff00 !important;
+    color: #000000 !important;
+}
+
+/* High Contrast Mode - Statistics Section */
+.high-contrast .stat-counter {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+.high-contrast .stat-label {
+    color: #cccccc !important;
+}
+
+/* High Contrast Mode - Chart Container */
+.high-contrast .chart-container {
+    background: #000000 !important;
+    border: 3px solid #ffffff !important;
+}
+
+/* High Contrast Mode - Floating Elements */
+.high-contrast .floating {
+    background: #000000 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* High Contrast Mode - Enhanced Cards */
+.high-contrast .enhanced-card,
+.high-contrast .glass-card,
+.high-contrast .card-hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* High Contrast Mode - Contact Form */
+.high-contrast .contact-form input,
+.high-contrast .contact-form textarea,
+.high-contrast .contact-form select {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #ffffff !important;
+}
+
+.high-contrast .contact-form input:focus,
+.high-contrast .contact-form textarea:focus,
+.high-contrast .contact-form select:focus {
+    border-color: #ffff00 !important;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5) !important;
+}
+
+/* High Contrast Mode - Accessibility Improvements */
+.high-contrast .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* High Contrast Mode - Print Styles */
+@media print {
+    .high-contrast * {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #000000 !important;
+    }
+    
+    .high-contrast .contrast-toggle {
+        display: none !important;
+    }
+}

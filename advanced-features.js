@@ -406,9 +406,19 @@ class AdvancedWebsiteFeatures {
 
     // High contrast mode
     setupHighContrastMode() {
+        // Check if high contrast mode was previously enabled
+        const wasHighContrast = localStorage.getItem('highContrastMode') === 'true';
+        
+        // Apply high contrast mode if it was previously enabled
+        if (wasHighContrast) {
+            document.body.classList.add('high-contrast');
+        }
+        
         const contrastToggle = document.createElement('button');
-        contrastToggle.innerHTML = '🌙';
+        contrastToggle.innerHTML = wasHighContrast ? '☀️' : '🌙';
         contrastToggle.className = 'contrast-toggle';
+        contrastToggle.setAttribute('aria-label', wasHighContrast ? 'Disable High Contrast Mode' : 'Enable High Contrast Mode');
+        contrastToggle.setAttribute('title', wasHighContrast ? 'Disable High Contrast Mode (Ctrl+Shift+H)' : 'Enable High Contrast Mode (Ctrl+Shift+H)');
         contrastToggle.style.cssText = `
             position: fixed;
             top: 100px;
@@ -416,21 +426,116 @@ class AdvancedWebsiteFeatures {
             z-index: 1000;
             background: #333;
             color: white;
-            border: none;
+            border: 2px solid #666;
             border-radius: 50%;
             width: 50px;
             height: 50px;
             font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         `;
+        
+        // Add hover effects
+        contrastToggle.addEventListener('mouseenter', () => {
+            contrastToggle.style.transform = 'scale(1.1)';
+            contrastToggle.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.4)';
+        });
+        
+        contrastToggle.addEventListener('mouseleave', () => {
+            contrastToggle.style.transform = 'scale(1)';
+            contrastToggle.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+        });
         
         document.body.appendChild(contrastToggle);
         
-        contrastToggle.addEventListener('click', () => {
-            document.body.classList.toggle('high-contrast');
-            contrastToggle.innerHTML = document.body.classList.contains('high-contrast') ? '☀️' : '🌙';
+        // Toggle function
+        const toggleHighContrast = () => {
+            const isHighContrast = document.body.classList.toggle('high-contrast');
+            
+            // Update button appearance
+            contrastToggle.innerHTML = isHighContrast ? '☀️' : '🌙';
+            contrastToggle.setAttribute('aria-label', isHighContrast ? 'Disable High Contrast Mode' : 'Enable High Contrast Mode');
+            contrastToggle.setAttribute('title', isHighContrast ? 'Disable High Contrast Mode (Ctrl+Shift+H)' : 'Enable High Contrast Mode (Ctrl+Shift+H)');
+            
+            // Update button styling for high contrast mode
+            if (isHighContrast) {
+                contrastToggle.style.background = '#ffffff';
+                contrastToggle.style.color = '#000000';
+                contrastToggle.style.borderColor = '#000000';
+            } else {
+                contrastToggle.style.background = '#333';
+                contrastToggle.style.color = '#ffffff';
+                contrastToggle.style.borderColor = '#666';
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('highContrastMode', isHighContrast);
+            
+            // Announce to screen readers
+            this.announceHighContrastChange(isHighContrast);
+            
+            // Update particle system for high contrast mode
+            this.updateParticleSystemForHighContrast(isHighContrast);
+        };
+        
+        // Click event
+        contrastToggle.addEventListener('click', toggleHighContrast);
+        
+        // Keyboard shortcut (Ctrl+Shift+H)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+                e.preventDefault();
+                toggleHighContrast();
+            }
         });
+        
+        // Add focus styles for keyboard navigation
+        contrastToggle.addEventListener('focus', () => {
+            contrastToggle.style.outline = '3px solid #f59e0b';
+            contrastToggle.style.outlineOffset = '2px';
+        });
+        
+        contrastToggle.addEventListener('blur', () => {
+            contrastToggle.style.outline = 'none';
+        });
+        
+        // Initialize particle system for current mode
+        this.updateParticleSystemForHighContrast(wasHighContrast);
+    }
+    
+    // Announce high contrast mode changes to screen readers
+    announceHighContrastChange(isEnabled) {
+        const announcement = document.createElement('div');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.setAttribute('aria-atomic', 'true');
+        announcement.className = 'sr-only';
+        announcement.textContent = isEnabled ? 'High Contrast Mode enabled' : 'High Contrast Mode disabled';
+        
+        document.body.appendChild(announcement);
+        
+        // Remove after announcement
+        setTimeout(() => {
+            document.body.removeChild(announcement);
+        }, 1000);
+    }
+    
+    // Update particle system for high contrast mode
+    updateParticleSystemForHighContrast(isHighContrast) {
+        const canvas = document.getElementById('particleCanvas');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        
+        if (isHighContrast) {
+            // High contrast mode: brighter, more visible particles
+            canvas.style.opacity = '0.8';
+            // The particle colors will be updated in the next animation frame
+        } else {
+            // Normal mode: subtle particles
+            canvas.style.opacity = '0.3';
+        }
     }
 
     // Utility methods
