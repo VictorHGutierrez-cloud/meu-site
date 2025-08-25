@@ -322,7 +322,7 @@
     </div>
 </section>
 
-  <!-- Market Section -->
+<!-- Market Section -->
 <section id="market" class="py-20 bg-white relative z-10">
   <div class="max-w-7xl mx-auto px-6">
     <!-- Título -->
@@ -338,19 +338,19 @@
     <!-- Cards -->
     <div class="grid md:grid-cols-3 gap-8">
       <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl text-center border border-blue-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4 opacity-100" data-target="65">0</div>
+        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="65">0</div>
         <h3 class="text-2xl font-bold text-gray-900 mb-2">% of U.S. Companies</h3>
         <p class="text-gray-600">without presence in Brazil willing to start operations.</p>
       </div>
 
       <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl text-center border border-green-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4 opacity-100" data-target="89">0</div>
+        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="89">0</div>
         <h3 class="text-2xl font-bold text-gray-900 mb-2">% of Established U.S. Companies</h3>
         <p class="text-gray-600">plan to expand existing operations in Brazil.</p>
       </div>
 
       <div class="card-hover bg-gradient-to-br from-yellow-50 to-orange-100 p-8 rounded-2xl text-center border border-yellow-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4 opacity-100" data-target="9553">0</div>
+        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="9553">0</div>
         <h3 class="text-2xl font-bold text-gray-900 mb-2">Brazilian Companies</h3>
         <p class="text-gray-600">exported to the U.S., record trade relations.</p>
       </div>
@@ -365,14 +365,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const runCounter = (counter) => {
     const target = +counter.getAttribute("data-target");
-    const speed = 30; // velocidade (ms) - menor = mais rápido
+    const duration = 2000; // duração total (ms)
+    const steps = 60; // quantidade de frames
+    const increment = target / steps;
     let count = 0;
+    let stepTime = duration / steps;
 
     const updateCount = () => {
+      count += increment;
       if (count < target) {
-        count += Math.ceil(target / 100); 
-        counter.textContent = count > target ? target : count;
-        setTimeout(updateCount, speed);
+        counter.textContent = Math.floor(count);
+        setTimeout(updateCount, stepTime);
+      } else {
+        counter.textContent = target;
       }
     };
 
@@ -845,6 +850,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
+
 
 
 
