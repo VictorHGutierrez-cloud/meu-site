@@ -365,15 +365,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const runCounter = (counter) => {
     const target = +counter.getAttribute("data-target");
-    const duration = 2000; // duração total (ms)
-    const steps = 60; // quantidade de frames
-    const increment = target / steps;
+    const duration = 1200; // mais rápido
+    const steps = 90; 
     let count = 0;
     let stepTime = duration / steps;
 
     const updateCount = () => {
-      count += increment;
-      if (count < target) {
+      // easing: acelera no começo, desacelera no fim
+      count += (target - count) / 8;  
+      if (count < target - 1) {
         counter.textContent = Math.floor(count);
         setTimeout(updateCount, stepTime);
       } else {
@@ -390,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.4 }
     );
 
     observer.observe(counter);
@@ -399,6 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
   counters.forEach(runCounter);
 });
 </script>
+
 
 
 
@@ -850,6 +851,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 </body>
 </html>
+
 
 
 
