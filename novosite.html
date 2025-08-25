@@ -722,12 +722,12 @@ const ctx = document.getElementById('pixChart').getContext('2d');
 
 // Gradiente para cada barra
 const gradient2023 = ctx.createLinearGradient(0, 0, 0, 400);
-gradient2023.addColorStop(0, 'rgba(245, 158, 11, 0.9)');
-gradient2023.addColorStop(1, 'rgba(245, 158, 11, 0.5)');
+gradient2023.addColorStop(0, 'rgba(245, 158, 11, 0.95)');
+gradient2023.addColorStop(1, 'rgba(245, 158, 11, 0.4)');
 
 const gradient2024 = ctx.createLinearGradient(0, 0, 0, 400);
 gradient2024.addColorStop(0, 'rgba(30, 58, 138, 0.95)');
-gradient2024.addColorStop(1, 'rgba(30, 58, 138, 0.6)');
+gradient2024.addColorStop(1, 'rgba(30, 58, 138, 0.4)');
 
 new Chart(ctx, {
     type: 'bar',
@@ -739,33 +739,34 @@ new Chart(ctx, {
             backgroundColor: [gradient2023, gradient2024],
             borderColor: ['#f59e0b', '#1e3a8a'],
             borderWidth: 2,
-            borderRadius: 12,
+            borderRadius: 14,
             hoverBorderWidth: 3,
             hoverBackgroundColor: [
                 'rgba(245, 158, 11, 1)',
                 'rgba(30, 58, 138, 1)'
-            ]
+            ],
+            barPercentage: 0.6, // barras mais estreitas e modernas
+            categoryPercentage: 0.5
         }]
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
         animation: {
-            duration: 1800,
+            duration: 2000,
             easing: 'easeOutQuart'
         },
         plugins: {
-            legend: {
-                display: false
-            },
+            legend: { display: false },
             tooltip: {
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                backgroundColor: 'rgba(0,0,0,0.9)',
                 titleColor: '#facc15',
                 bodyColor: '#f3f4f6',
                 borderColor: '#f59e0b',
                 borderWidth: 2,
-                cornerRadius: 8,
-                padding: 12,
+                cornerRadius: 10,
+                padding: 14,
+                displayColors: false,
                 callbacks: {
                     label: function(context) {
                         return `💳 ${context.parsed.y} Billion`;
@@ -777,34 +778,28 @@ new Chart(ctx, {
             y: {
                 beginAtZero: true,
                 grid: {
-                    color: 'rgba(0, 0, 0, 0.05)',
-                    drawBorder: false
+                    color: 'rgba(0,0,0,0.05)',
+                    drawBorder: false,
+                    drawTicks: false
                 },
                 ticks: {
                     color: '#111827',
-                    font: {
-                        size: 14,
-                        weight: 'bold',
-                        family: 'Inter, sans-serif'
-                    }
+                    font: { size: 14, weight: 'bold', family: 'Inter, sans-serif' },
+                    padding: 10
                 }
             },
             x: {
-                grid: {
-                    display: false
-                },
+                grid: { display: false },
                 ticks: {
                     color: '#374151',
-                    font: {
-                        size: 14,
-                        weight: '600',
-                        family: 'Inter, sans-serif'
-                    }
+                    font: { size: 14, weight: '600', family: 'Inter, sans-serif' },
+                    padding: 10
                 }
             }
         }
     }
 });
+
 
         
         // GSAP Animations
@@ -871,6 +866,7 @@ new Chart(ctx, {
     </script>
 </body>
 </html>
+
 
 
 
