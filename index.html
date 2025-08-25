@@ -507,35 +507,76 @@
     </section>
 
     <!-- Alliance Section -->
-    <section id="alliance" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">The Partnership Opportunity: A Unified Value Proposition</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">By combining LexBridge's legal authority with Payoneer's financial infrastructure, we create an unmatched "one-stop-shop" solution. This partnership strengthens your client offerings, creates new revenue opportunities, and solidifies your position as the premier guide for U.S. companies entering Brazil.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl text-center">
-                        <div class="text-4xl text-[#D4AF37] mb-4">🤝</div>
-                        <h3 class="text-xl font-bold text-[#003366] mb-2">Referral Partnership</h3>
-                        <p class="text-gray-600">Strengthen your value proposition by recommending Payoneer as the go-to financial solution, creating a seamless client experience from legal setup to financial operation.</p>
-                    </div>
-                    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl text-center">
-                        <div class="text-4xl text-[#D4AF37] mb-4">🚀</div>
-                        <h3 class="text-xl font-bold text-[#003366] mb-2">Dedicated Onboarding</h3>
-                        <p class="text-gray-600">A dedicated Payoneer team will provide a white-glove onboarding experience for all referred clients, ensuring a smooth transition and rapid time-to-value.</p>
-                    </div>
-                    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl text-center">
-                        <div class="text-4xl text-[#D4AF37] mb-4">📈</div>
-                        <h3 class="text-xl font-bold text-[#003366] mb-2">Joint Marketing</h3>
-                        <p class="text-gray-600">Co-author reports, host webinars, and create case studies to capture new market share and establish our alliance as the thought leader in U.S.-Brazil expansion.</p>
-                    </div>
-                </div>
-                 <div class="text-center mt-12">
-                    <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" class="inline-block bg-[#D4AF37] text-[#003366] font-bold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition-opacity">Let's Schedule a Follow-Up</a>
-                </div>
+    <!-- Alliance Section -->
+<section id="alliance" class="py-20 bg-white relative z-10">
+    <div class="container mx-auto px-6">
+        <!-- Heading -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">
+                The Partnership Opportunity: A Unified Value Proposition
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                By combining LexBridge's legal authority with Payoneer's financial infrastructure, we create an unmatched "one-stop-shop" solution. 
+                This partnership strengthens your client offerings, creates new revenue opportunities, and solidifies your position as the premier guide for U.S. companies entering Brazil.
+            </p>
+        </div>
+
+        <!-- Cards -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="solution-card relative bg-[#F0F4F8] p-8 rounded-xl text-center opacity-0">
+                <div class="text-4xl text-[#D4AF37] mb-4">🤝</div>
+                <h3 class="text-xl font-bold text-[#003366] mb-2">Referral Partnership</h3>
+                <p class="text-gray-600">
+                    Strengthen your value proposition by recommending Payoneer as the go-to financial solution, creating a seamless client experience from legal setup to financial operation.
+                </p>
             </div>
-        </section>
-    </main>
+            <div class="solution-card relative bg-[#F0F4F8] p-8 rounded-xl text-center opacity-0">
+                <div class="text-4xl text-[#D4AF37] mb-4">🚀</div>
+                <h3 class="text-xl font-bold text-[#003366] mb-2">Dedicated Onboarding</h3>
+                <p class="text-gray-600">
+                    A dedicated Payoneer team will provide a white-glove onboarding experience for all referred clients, ensuring a smooth transition and rapid time-to-value.
+                </p>
+            </div>
+            <div class="solution-card relative bg-[#F0F4F8] p-8 rounded-xl text-center opacity-0">
+                <div class="text-4xl text-[#D4AF37] mb-4">📈</div>
+                <h3 class="text-xl font-bold text-[#003366] mb-2">Joint Marketing</h3>
+                <p class="text-gray-600">
+                    Co-author reports, host webinars, and create case studies to capture new market share and establish our alliance as the thought leader in U.S.-Brazil expansion.
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center mt-12">
+            <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" 
+               class="inline-block bg-[#D4AF37] text-[#003366] font-bold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition-opacity">
+               Let's Schedule a Follow-Up
+            </a>
+        </div>
+    </div>
+
+    <!-- GSAP Animation (Local, sem afetar outros cards) -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('#alliance .solution-card').forEach((card, i) => {
+            gsap.fromTo(card, 
+                {y: 50, opacity: 0}, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%'
+                    },
+                    delay: i * 0.2
+                }
+            );
+        });
+    </script>
+</section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
@@ -761,6 +802,7 @@
     </script>
 </body>
 </html>
+
 
 
 
