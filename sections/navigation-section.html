@@ -1,0 +1,84 @@
+<!-- 🔗 NAVIGATION SECTION - HEADER & MOBILE MENU -->
+<!-- This file contains the navigation header with mobile menu -->
+<!-- Easy to edit: Change navigation links, company name, and mobile menu text -->
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+    <nav class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+            <!-- Company Logo/Name -->
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-blue-900" id="nav-company-name">
+                    Payoneer & LexBridge
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-8">
+                <a href="#market" class="text-gray-700 hover:text-blue-600 font-medium transition-colors" id="nav-market">The Market</a>
+                <a href="#fintech" class="text-gray-700 hover:text-blue-600 font-medium transition-colors" id="nav-fintech">Fintech Revolution</a>
+                <a href="#solution" class="text-gray-700 hover:text-blue-600 font-medium transition-colors" id="nav-solution">Our Solution</a>
+                <a href="#alliance" class="text-gray-700 hover:text-blue-600 font-medium transition-colors" id="nav-alliance">The Alliance</a>
+                <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" 
+                   class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors">
+                    Contact Us
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-700 hover:text-blue-600" id="mobile-menu-button" aria-label="Toggle mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="pt-4 pb-6 space-y-4 border-t border-gray-200 mt-4">
+                <a href="#market" class="block text-gray-700 hover:text-blue-600 font-medium py-2" id="mobile-nav-market">The Market</a>
+                <a href="#fintech" class="block text-gray-700 hover:text-blue-600 font-medium py-2" id="mobile-nav-fintech">Fintech Revolution</a>
+                <a href="#solution" class="block text-gray-700 hover:text-blue-600 font-medium py-2" id="mobile-nav-solution">Our Solution</a>
+                <a href="#alliance" class="block text-gray-700 hover:text-blue-600 font-medium py-2" id="mobile-nav-alliance">The Alliance</a>
+                <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" 
+                   class="block bg-blue-600 text-white px-6 py-3 rounded-full font-medium text-center">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Skip to Content Link for Accessibility -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50" id="skip-to-content">
+    Skip to main content
+</a>
+
+<!-- 
+📝 EASY EDITING GUIDE:
+To change the navigation section content, edit these elements:
+
+1. COMPANY NAME: Change the text inside <a id="nav-company-name">
+
+2. DESKTOP NAVIGATION LINKS:
+   - MARKET: Change the text inside <a id="nav-market">
+   - FINTECH: Change the text inside <a id="nav-fintech">
+   - SOLUTION: Change the text inside <a id="nav-solution">
+   - ALLIANCE: Change the text inside <a id="nav-alliance">
+
+3. MOBILE NAVIGATION LINKS:
+   - MARKET: Change the text inside <a id="mobile-nav-market">
+   - FINTECH: Change the text inside <a id="mobile-nav-fintech">
+   - SOLUTION: Change the text inside <a id="mobile-nav-solution">
+   - ALLIANCE: Change the text inside <a id="mobile-nav-alliance">
+
+4. CONTACT BUTTON:
+   - Change the email address in the href attribute
+   - Change the button text "Contact Us"
+
+5. ACCESSIBILITY:
+   - SKIP TO CONTENT: Change the text inside <a id="skip-to-content">
+
+6. COLORS: Change the color classes (text-blue-900, bg-blue-600, etc.) to match your brand
+
+The JavaScript will automatically update these elements from the content.js file.
+-->
