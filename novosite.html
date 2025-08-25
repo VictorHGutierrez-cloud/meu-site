@@ -1,724 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payoneer & LexBridge: The Ultimate Brazilian Expansion Solution</title>
-    
-    <!-- Modern CSS Framework -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Custom Styles -->
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #f59e0b;
-            --accent: #10b981;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #f59e0b, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .stat-counter {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #f59e0b, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .parallax-section {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .solution-tab {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .solution-tab.active {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 400px;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        @media (max-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
-        }
-        
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float-slow 20s infinite linear;
-        }
-        
-        @keyframes float-slow {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-        
-        .gradient-border {
-            position: relative;
-            background: white;
-            border-radius: 20px;
-        }
-        
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, #f59e0b, #f97316, #10b981);
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gradient-border:hover::before {
-            opacity: 1;
-        }
-        
-        .typing-effect {
-            overflow: hidden;
-            border-right: 3px solid var(--secondary);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--secondary); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payoneer & LexBridge: Strategic Alliance for Brazilian Expansion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; background-color:#FDFBF8; color:#1A202C; }
+  .nav-link { transition: 0.3s; border-bottom:2px solid transparent; }
+  .nav-link.active, .nav-link:hover { color:#003366; border-bottom-color:#D4AF37; }
+  .stat-card, .solution-card, .tab-content { transition: transform 0.3s, box-shadow 0.3s; }
+  .stat-card:hover, .solution-card:hover { transform:translateY(-5px); box-shadow:0 10px 15px rgba(0,0,0,0.1); }
+  .tab.active { background-color:#003366; color:#fff; }
+  .chart-container { position:relative; width:100%; height:300px; max-width:800px; margin:0 auto; }
+  @media (min-width:768px) { .chart-container { height:400px; } }
+</style>
 </head>
-<body>
-    <!-- Floating Background Elements -->
-    <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-delay: 0s;">🚀</div>
-        <div class="floating-element" style="left: 20%; animation-delay: 5s;">💼</div>
-        <div class="floating-element" style="left: 30%; animation-delay: 10s;">🌍</div>
-        <div class="floating-element" style="left: 40%; animation-delay: 15s;">⚡</div>
-        <div class="floating-element" style="left: 50%; animation-delay: 20s;">🎯</div>
-        <div class="floating-element" style="left: 60%; animation-delay: 25s;">💡</div>
-        <div class="floating-element" style="left: 70%; animation-delay: 30s;">🔒</div>
-        <div class="floating-element" style="left: 80%; animation-delay: 35s;">📈</div>
-        <div class="floating-element" style="left: 90%; animation-delay: 40s;">🌟</div>
+<body class="antialiased">
+<!-- Header -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+  <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-[#003366]">Payoneer <span class="text-[#D4AF37]">&</span> LexBridge</div>
+    <div class="hidden md:flex space-x-8">
+      <a href="#market" class="nav-link font-medium text-gray-600 pb-1">The Market</a>
+      <a href="#fintech" class="nav-link font-medium text-gray-600 pb-1">Fintech Revolution</a>
+      <a href="#solution" class="nav-link font-medium text-gray-600 pb-1">Our Solution</a>
+      <a href="#alliance" class="nav-link font-medium text-gray-600 pb-1">The Alliance</a>
     </div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-effect">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-white">
-                    <span class="text-3xl">🚀</span>
-                    Payoneer <span class="text-yellow-400">&</span> LexBridge
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#market" class="nav-link text-white font-medium">The Market</a>
-                    <a href="#fintech" class="nav-link text-white font-medium">Fintech Revolution</a>
-                    <a href="#solution" class="nav-link text-white font-medium">Our Solution</a>
-                    <a href="#alliance" class="nav-link text-white font-medium">The Alliance</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-white">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="text-center text-white z-10 px-6">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                <span class="typing-effect">Conquer "Custo Brasil"</span>
-                <br>
-                <span class="gradient-text">with full Compliance Coverage</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto opacity-90">
-                Providing U.S. companies with an end-to-end legal & financial framework for seamless expansion into Brazil.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#solution" class="bg-yellow-400 text-blue-900 font-bold py-4 px-8 rounded-full text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                    🚀 Discover the Solution
-                </a>
-                <a href="#alliance" class="border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:scale-105">
-                    🤝 Join the Alliance
-                </a>
-            </div>
-        </div>
-        
-        <!-- Floating Elements in Hero -->
-        <div class="absolute top-20 left-10 floating">
-            <div class="bg-white/10 backdrop-blur-md rounded-full p-4">
-                <span class="text-4xl">💼</span>
-            </div>
-        </div>
-        <div class="absolute top-40 right-20 floating" style="animation-delay: 2s;">
-            <div class="bg-white/10 backdrop-blur-md rounded-full p-4">
-                <span class="text-4xl">🌍</span>
-            </div>
-        </div>
-        <div class="absolute bottom-40 left-20 floating" style="animation-delay: 4s;">
-            <div class="bg-white/10 backdrop-blur-md rounded-full p-4">
-                <span class="text-4xl">⚡</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Market Section -->
-    <section id="market" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Brazilian Market: <span class="gradient-text">High Potential, High Complexity</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    Brazil presents massive opportunity, but navigating the "Custo Brasil" demands integrated operational infrastructure.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl text-center border border-blue-200">
-                    <div class="stat-counter mb-4" data-target="65">0</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">% of U.S. Companies</h3>
-                    <p class="text-gray-600">without presence in Brazil willing to start operations.</p>
-                </div>
-                <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl text-center border border-green-200">
-                    <div class="stat-counter mb-4" data-target="89">0</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">% of Established U.S. Companies</h3>
-                    <p class="text-gray-600">plan to expand existing operations in Brazil.</p>
-                </div>
-                <div class="card-hover bg-gradient-to-br from-yellow-50 to-orange-100 p-8 rounded-2xl text-center border border-yellow-200">
-                    <div class="stat-counter mb-4" data-target="9553">0</div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Brazilian Companies</h3>
-                    <p class="text-gray-600">exported to the U.S., record trade relations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fintech Section -->
-    <section id="fintech" class="py-20 bg-gradient-to-r from-gray-50 to-blue-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    The <span class="gradient-text">Fintech Revolution</span>: Pix Growth
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    Modern, instant payment infrastructure is essential for success in Brazil.
-                </p>
-            </div>
-            
-            <div class="chart-container bg-white rounded-2xl shadow-2xl p-8">
-                <canvas id="pixChart"></canvas>
-            </div>
-            
-            <p class="text-center mt-6 text-gray-500">
-                Pix transactions grew <span class="font-bold text-green-600">53% in 2024</span>, primary payment rail in Brazil.
-            </p>
-        </div>
-    </section>
-
-    <!-- Solutions Section -->
-    <section id="solution" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Integrated Solutions for <span class="gradient-text">Core Pain Points</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    LexBridge-Payoneer alliance tackles critical U.S. company challenges in Brazil.
-                </p>
-            </div>
-            
-            <!-- Solution Tabs -->
-            <div class="flex justify-center mb-12 gap-4 flex-wrap">
-                <button class="solution-tab active bg-blue-100 text-blue-900 px-6 py-3 rounded-full font-semibold" data-tab="compliance">
-                    🏛️ Compliance & Labor
-                </button>
-                <button class="solution-tab bg-green-100 text-green-900 px-6 py-3 rounded-full font-semibold" data-tab="fx">
-                    💰 FX & Payments
-                </button>
-                <button class="solution-tab bg-purple-100 text-purple-900 px-6 py-3 rounded-full font-semibold" data-tab="onboarding">
-                    🚀 Onboarding & Scale
-                </button>
-            </div>
-            
-            <!-- Tab Contents -->
-            <div id="compliance" class="tab-content">
-                <div class="gradient-border p-8">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-900">Navigating the Regulatory Labyrinth</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b-2 border-gray-200">
-                                    <th class="p-4 font-bold text-lg">Challenge</th>
-                                    <th class="p-4 font-bold text-lg text-red-600">Operational Pain Point</th>
-                                    <th class="p-4 font-bold text-lg text-green-600">The Alliance Solution</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Labor Law (CLT) & Misclassification Risk</td>
-                                    <td class="p-4 text-red-600">Fines, lawsuits, and reputational damage from complex labor laws.</td>
-                                    <td class="p-4 text-green-700"><strong>Payoneer's EOR</strong> handles compliant hiring and payroll. <strong>LexBridge</strong> provides strategic legal counsel.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 font-semibold">Tax & Financial Reporting</td>
-                                    <td class="p-4 text-red-600">High administrative burden and non-compliance risk in a complex tax system.</td>
-                                    <td class="p-4 text-green-700"><strong>Payoneer's platform</strong> automates tax form collection. <strong>LexBridge</strong> advises on tax optimization.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="fx" class="tab-content hidden">
-                <div class="gradient-border p-8">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-900">Eliminating FX Costs and Volatility</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b-2 border-gray-200">
-                                    <th class="p-4 font-bold text-lg">Criterion</th>
-                                    <th class="p-4 font-bold text-lg text-red-600">Traditional (SWIFT/Wire)</th>
-                                    <th class="p-4 font-bold text-lg text-green-600">Payoneer FX & Payment Solution</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Speed</td>
-                                    <td class="p-4">Days or weeks</td>
-                                    <td class="p-4 font-bold text-green-600">Seconds to minutes</td>
-                                </tr>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Cost</td>
-                                    <td class="p-4">High fees & hidden costs</td>
-                                    <td class="p-4 font-bold text-green-600">Low, competitive rates</td>
-                                </tr>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Transparency</td>
-                                    <td class="p-4">Unpredictable rates, no visibility</td>
-                                    <td class="p-4 font-bold text-green-600">Full transparency, no hidden fees</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 font-semibold">Complexity</td>
-                                    <td class="p-4">Manual process, multiple banks</td>
-                                    <td class="p-4 font-bold text-green-600">Simplified, automated platform</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="onboarding" class="tab-content hidden">
-                <div class="gradient-border p-8">
-                    <h3 class="text-3xl font-bold text-center mb-8 text-gray-900">Simplifying Onboarding to Scale with Ease</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b-2 border-gray-200">
-                                    <th class="p-4 font-bold text-lg">Action</th>
-                                    <th class="p-4 font-bold text-lg text-red-600">Traditional Onboarding</th>
-                                    <th class="p-4 font-bold text-lg text-green-600">Payoneer WFM Solution</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Legal Entity Creation</td>
-                                    <td class="p-4 text-red-600">Months-long, high-cost process</td>
-                                    <td class="p-4 font-bold text-green-600">Not required; Payoneer acts as Employer of Record (EOR)</td>
-                                </tr>
-                                <tr class="border-b border-gray-100">
-                                    <td class="p-4 font-semibold">Employment Contracts</td>
-                                    <td class="p-4 text-red-600">Requires local legal counsel, high risk & bureaucracy</td>
-                                    <td class="p-4 font-bold text-green-600">Uses localized, compliant contracts via the platform</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-4 font-semibold">Payroll & Payments</td>
-                                    <td class="p-4 text-red-600">Complex, manual, multi-currency process</td>
-                                    <td class="p-4 font-bold text-green-600">Simplified, multi-currency payroll from a single dashboard</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Alliance Section -->
-    <section id="alliance" class="py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    The Partnership Opportunity: <span class="text-yellow-400">A Unified Value Proposition</span>
-                </h2>
-                <p class="text-xl opacity-90 max-w-4xl mx-auto">
-                    By combining LexBridge's legal authority with Payoneer's financial infrastructure, we create an unmatched "one-stop-shop" solution.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="card-hover bg-white/10 backdrop-blur-md p-8 rounded-2xl text-center border border-white/20">
-                    <div class="text-6xl mb-6">🤝</div>
-                    <h3 class="text-2xl font-bold mb-4">Referral Partnership</h3>
-                    <p class="opacity-90">Strengthen your value proposition by recommending Payoneer as the go-to financial solution.</p>
-                </div>
-                <div class="card-hover bg-white/10 backdrop-blur-md p-8 rounded-2xl text-center border border-white/20">
-                    <div class="text-6xl mb-6">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">Dedicated Onboarding</h3>
-                    <p class="opacity-90">A dedicated Payoneer team will provide a white-glove onboarding experience for all referred clients.</p>
-                </div>
-                <div class="card-hover bg-white/10 backdrop-blur-md p-8 rounded-2xl text-center border border-white/20">
-                    <div class="text-6xl mb-6">📈</div>
-                    <h3 class="text-2xl font-bold mb-4">Joint Marketing</h3>
-                    <p class="opacity-90">Co-author reports, host webinars, and create case studies to capture new market share.</p>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" 
-                   class="inline-block bg-yellow-400 text-blue-900 font-bold py-4 px-10 rounded-full text-xl hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                    🚀 Let's Schedule a Follow-Up
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="mb-8">
-                <h3 class="text-2xl font-bold mb-4">Payoneer <span class="text-yellow-400">&</span> LexBridge</h3>
-                <p class="opacity-75">The ultimate strategic alliance for Brazilian market expansion</p>
-            </div>
-            <div class="border-t border-gray-700 pt-8">
-                <p>&copy; 2025 Payoneer Inc. All rights reserved.</p>
-                <p class="text-sm mt-2 opacity-75">Conceptual strategic partnership proposal with LexBridge Legal.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Mobile menu functionality
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            // Add mobile menu logic here
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Tab functionality
-        const tabs = document.querySelectorAll('.solution-tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Hide all tab contents
-                tabContents.forEach(content => content.classList.add('hidden'));
-                
-                // Show selected tab content
-                const targetTab = tab.getAttribute('data-tab');
-                document.getElementById(targetTab).classList.remove('hidden');
-            });
-        });
-        
-        // Animated counter for statistics
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            function updateCounter() {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
-                }
-            }
-            
-            updateCounter();
-        }
-        
-        // Intersection Observer for counter animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    animateCounter(entry.target, target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        document.querySelectorAll('[data-target]').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Chart.js for Pix growth
-        const ctx = document.getElementById('pixChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['2023 Transactions', '2024 Transactions (Est.)'],
-                datasets: [{
-                    label: 'Pix Transactions (in Billions)',
-                    data: [41.8, 64],
-                    backgroundColor: [
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(30, 58, 138, 0.9)'
-                    ],
-                    borderColor: [
-                        'rgba(245, 158, 11, 1)',
-                        'rgba(30, 58, 138, 1)'
-                    ],
-                    borderWidth: 3,
-                    borderRadius: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: 'white',
-                        bodyColor: 'white',
-                        borderColor: '#f59e0b',
-                        borderWidth: 2,
-                        cornerRadius: 10,
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.parsed.y + ' Billion';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.1)'
-                        },
-                        ticks: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        },
-                        ticks: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        
-        // GSAP Animations
-        gsap.from('.hero-gradient h1', {
-            duration: 1.5,
-            y: 100,
-            opacity: 0,
-            ease: 'power3.out'
-        });
-        
-        gsap.from('.hero-gradient p', {
-            duration: 1.5,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.3
-        });
-        
-        gsap.from('.hero-gradient a', {
-            duration: 1,
-            y: 30,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.6,
-            stagger: 0.2
-        });
-        
-        // Scroll-triggered animations
-        gsap.from('.stat-counter', {
-            scrollTrigger: {
-                trigger: '.stat-counter',
-                start: 'top 80%'
-            },
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            stagger: 0.2
-        });
-        
-        gsap.from('.card-hover', {
-            scrollTrigger: {
-                trigger: '.card-hover',
-                start: 'top 80%'
-            },
-            duration: 0.8,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            stagger: 0.1
-        });
-        
-        // Parallax effect for floating elements
-        gsap.to('.floating', {
-            y: -50,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero-gradient',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
-    </script>
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-1 pb-4">
+    <a href="#market" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">The Market</a>
+    <a href="#fintech" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Fintech Revolution</a>
+    <a href="#solution" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Our Solution</a>
+    <a href="#alliance" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">The Alliance</a>
+  </div>
+</header>
+<!-- Hero Section -->
+<section id="hero" class="py-20 bg-gradient-to-b from-[#fdfbf8] to-[#eae6e0] px-6 text-center">
+  <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#003366] leading-tight">Conquer "Custo Brasil" with Full Compliance Resolution</h1>
+  <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Providing U.S. companies with an end-to-end legal & financial framework for seamless expansion into Brazil.</p>
+  <a href="#solution" class="mt-8 inline-block bg-[#003366] text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-[#002244] shadow-lg transition-transform hover:scale-105">Discover the Solution</a>
+</section>
+<!-- Market Section -->
+<section id="market" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Brazilian Market: High Potential, High Complexity</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Brazil presents massive opportunity, but navigating the "Custo Brasil" demands integrated operational infrastructure.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div class="stat-card bg-white p-8 rounded-xl shadow-lg">
+      <div class="text-5xl font-bold text-[#D4AF37]" data-target="65" data-unit="%">0</div>
+      <p class="mt-2 text-lg font-semibold text-[#003366]">of U.S. Companies</p>
+      <p class="mt-1 text-gray-500">without presence in Brazil willing to start operations.</p>
+    </div>
+    <div class="stat-card bg-white p-8 rounded-xl shadow-lg">
+      <div class="text-5xl font-bold text-[#D4AF37]" data-target="89" data-unit="%">0</div>
+      <p class="mt-2 text-lg font-semibold text-[#003366]">of Established U.S. Companies</p>
+      <p class="mt-1 text-gray-500">plan to expand existing operations in Brazil.</p>
+    </div>
+    <div class="stat-card bg-white p-8 rounded-xl shadow-lg">
+      <div class="text-5xl font-bold text-[#D4AF37]" data-target="9500">0</div>
+      <p class="mt-2 text-lg font-semibold text-[#003366]">Brazilian Companies</p>
+      <p class="mt-1 text-gray-500">exported to the U.S., record trade relations.</p>
+    </div>
+  </div>
+</section>
+<!-- Fintech Section -->
+<section id="fintech" class="py-20 bg-white px-6">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">The Fintech Revolution: Pix Growth</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Modern, instant payment infrastructure is essential for success in Brazil.</p>
+  </div>
+  <div class="chart-container">
+    <canvas id="pixChart"></canvas>
+  </div>
+  <p class="text-center mt-4 text-sm text-gray-500">Pix transactions grew 52% in 2024, primary payment rail in Brazil.</p>
+</section>
+<!-- Solutions Section -->
+<section id="solution" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Integrated Solutions for Core Pain Points</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">LexBridge-Payoneer alliance tackles critical U.S. company challenges in Brazil.</p>
+  </div>
+  <!-- Tabs -->
+  <div class="flex flex-wrap justify-center mb-8 gap-4">
+    <button class="tab px-4 py-2 rounded-lg font-semibold bg-blue-100 text-blue-900 active" data-tab="compliance">Compliance & Labor</button>
+    <button class="tab px-4 py-2 rounded-lg font-semibold bg-blue-100 text-blue-900" data-tab="fx">FX & Payments</button>
+    <button class="tab px-4 py-2 rounded-lg font-semibold bg-blue-100 text-blue-900" data-tab="onboarding">Onboarding & Scale</button>
+  </div>
+  <!-- Tab Contents -->
+  <div id="compliance" class="tab-content">
+    <div class="overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6">
+      <table class="w-full text-left min-w-[600px]">
+        <thead>
+          <tr class="border-b"><th class="p-4 font-semibold">Challenge</th><th class="p-4 font-semibold">Pain</th><th class="p-4 font-semibold">Solution</th></tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="p-4 align-top font-medium">Labor Law (CLT)</td>
+            <td class="p-4 align-top text-red-600">Fines & lawsuits</td>
+            <td class="p-4 align-top text-green-700"><strong>Payoneer EOR</strong> + <strong>LexBridge</strong> legal counsel</td>
+          </tr>
+          <tr>
+            <td class="p-4 align-top font-medium">Tax Reporting</td>
+            <td class="p-4 align-top text-red-600">High admin burden</td>
+            <td class="p-4 align-top text-green-700">Automated tax forms + advisory</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="fx" class="tab-content hidden overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6 min-w-[600px]">
+    <table class="w-full text-left">
+      <thead><tr class="border-b"><th>Criterion</th><th class="text-red-600">Traditional</th><th class="text-green-700">Payoneer FX</th></tr></thead>
+      <tbody>
+        <tr class="border-b"><td>Speed</td><td>Days/Weeks</td><td class="font-bold">Seconds/Minutes</td></tr>
+        <tr class="border-b"><td>Cost</td><td>High fees</td><td class="font-bold">Low/Competitive</td></tr>
+        <tr class="border-b"><td>Transparency</td><td>Unpredictable</td><td class="font-bold">Full</td></tr>
+        <tr><td>Complexity</td><td>Manual</td><td class="font-bold">Simplified</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="onboarding" class="tab-content hidden overflow-x-auto bg-white rounded-lg shadow-lg p-4 mb-6 min-w-[600px]">
+    <table class="w-full text-left">
+      <thead><tr class="border-b"><th>Action</th><th class="text-red-600">Traditional</th><th class="text-green-700">Payoneer WFM</th></tr></thead>
+      <tbody>
+        <tr class="border-b"><td>Legal Entity</td><td>Months-long</td><td class="font-bold">Not required, EOR</td></tr>
+        <tr class="border-b"><td>Contracts</td><td>Local legal required</td><td class="font-bold">Localized & compliant</td></tr>
+        <tr><td>Payroll</td><td>Complex & manual</td><td class="font-bold">Simplified, multi-currency</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<!-- Alliance Section -->
+<section id="alliance" class="py-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Unified Value Proposition</h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">LexBridge legal + Payoneer finance = unmatched one-stop-shop for U.S. companies in Brazil.</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl shadow-lg">
+      <div class="text-4xl text-[#D4AF37] mb-4">🤝</div>
+      <h3 class="text-xl font-bold text-[#003366] mb-2">Referral Partnership</h3>
+      <p class="text-gray-600">Recommend Payoneer, seamless client experience.</p>
+    </div>
+    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl shadow-lg">
+      <div class="text-4xl text-[#D4AF37] mb-4">🚀</div>
+      <h3 class="text-xl font-bold text-[#003366] mb-2">Dedicated Onboarding</h3>
+      <p class="text-gray-600">White-glove onboarding for referred clients.</p>
+    </div>
+    <div class="solution-card bg-[#F0F4F8] p-8 rounded-xl shadow-lg">
+      <div class="text-4xl text-[#D4AF37] mb-4">📈</div>
+      <h3 class="text-xl font-bold text-[#003366] mb-2">Joint Marketing</h3>
+      <p class="text-gray-600">Webinars, reports & case studies to capture market share.</p>
+    </div>
+  </div>
+  <div class="text-center mt-12">
+    <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership" class="inline-block bg-[#D4AF37] text-[#003366] font-bold py-3 px-8 rounded-lg text-lg hover:opacity-90 transition-opacity">Let's Schedule a Follow-Up</a>
+  </div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#003366] text-white py-8 px-6 text-center">
+  <p>&copy; 2025 Payoneer Inc. All rights reserved.</p>
+  <p class="text-sm mt-2 opacity-75">Conceptual strategic partnership proposal with LexBridge.</p>
+</footer>
+<!-- Scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  const navLinks = document.querySelectorAll('.nav-link, #mobile-menu a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+    });
+  });
+  const tabs = document.querySelectorAll('.tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const target = tab.getAttribute('data-tab');
+      tabContents.forEach(tc => tc.id === target ? tc.classList.remove('hidden') : tc.classList.add('hidden'));
+    });
+  });
+  function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = timestamp => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const value = Math.floor(progress * (end - start) + start);
+      obj.innerHTML = value.toLocaleString() + (obj.getAttribute('data-unit') || '');
+      if (progress < 1) window.requestAnimationFrame(step);
+    };
+    window.requestAnimationFrame(step);
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateValue(entry.target, 0, +entry.target.getAttribute('data-target'), 1500);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+  const ctx = document.getElementById('pixChart').getContext('2d');
+  new Chart(ctx, {
+    type:'bar',
+    data:{
+      labels:['2023','2024'],
+      datasets:[{label:'Pix Transactions (Billions)', data:[45.2,68.7], backgroundColor:['rgba(212,175,55,0.6)','rgba(0,51,102,0.8)'], borderColor:['rgba(212,175,55,1)','rgba(0,51,102,1)'], borderWidth:1}]
+    },
+    options:{responsive:true, maintainAspectRatio:false, scales:{y:{beginAtZero:true,title:{display:true,text:'Transactions (Billions)'}}}, plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label + ': ' + ctx.parsed.y + ' Billion';}}}}}
+  });
+  const sections = document.querySelectorAll('section');
+  const headerLinks = document.querySelectorAll('.nav-link');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        headerLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector('.nav-link[href="#'+entry.target.id+'"]');
+        if(activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: "-50% 0px -50% 0px" });
+  sections.forEach(section => sectionObserver.observe(section));
+});
+</script>
 </body>
 </html>
+
 
 
