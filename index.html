@@ -24,6 +24,117 @@
     <!-- 🚀 ULTIMATE ENHANCED VISUAL SYSTEM -->
     <link rel="stylesheet" href="enhanced-styles.css">
     
+    <!-- 🔥 CRITICAL FALLBACK CSS FOR IMMEDIATE LOADING -->
+    <style>
+        /* Ensure holographic cards always work */
+        .holographic-card-ultimate {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            border: 1px solid transparent;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6), 0 0 40px rgba(102, 126, 234, 0.4), 0 0 60px rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: pulse-holographic 4s ease infinite;
+        }
+        
+        .holographic-card-ultimate::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b, #fb5607);
+            background-size: 400% 400%;
+            border-radius: inherit;
+            animation: aurora-dance 6s linear infinite;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            -webkit-mask-composite: xor;
+        }
+        
+        .holographic-card-ultimate:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.5), 0 0 40px rgba(131, 56, 236, 0.5), 0 0 60px rgba(58, 134, 255, 0.5);
+            animation: liquid-morph 4s ease infinite;
+        }
+        
+        @keyframes pulse-holographic {
+            0%, 100% { 
+                background-position: 0% 50%;
+                box-shadow: 0 0 30px rgba(255, 0, 110, 0.6);
+            }
+            50% { 
+                background-position: 100% 50%;
+                box-shadow: 0 0 50px rgba(131, 56, 236, 0.8), 0 0 80px rgba(58, 134, 255, 0.6);
+            }
+        }
+        
+        @keyframes aurora-dance {
+            0% { 
+                background-position: 0% 50%;
+                filter: hue-rotate(0deg) brightness(1) saturate(1);
+            }
+            25% { 
+                background-position: 100% 50%;
+                filter: hue-rotate(90deg) brightness(1.2) saturate(1.3);
+            }
+            50% { 
+                background-position: 0% 100%;
+                filter: hue-rotate(180deg) brightness(1) saturate(1);
+            }
+            75% { 
+                background-position: 100% 0%;
+                filter: hue-rotate(270deg) brightness(1.2) saturate(1.3);
+            }
+            100% { 
+                background-position: 0% 50%;
+                filter: hue-rotate(360deg) brightness(1) saturate(1);
+            }
+        }
+        
+        @keyframes liquid-morph {
+            0%, 100% { 
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                background-position: 0% 50%;
+            }
+            25% { 
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                background-position: 25% 75%;
+            }
+            50% { 
+                border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+                background-position: 100% 50%;
+            }
+            75% { 
+                border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%;
+                background-position: 75% 25%;
+            }
+        }
+        
+        /* 🔥 FORCE VISIBILITY AND PREVENT FLICKERING */
+        .holographic-card-ultimate,
+        .card-hover {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            min-height: 200px;
+        }
+        
+        /* Ensure smooth loading */
+        .holographic-card-ultimate.loaded {
+            animation-play-state: running;
+        }
+        
+        /* Fallback for browsers that don't support advanced CSS */
+        @supports not (backdrop-filter: blur(10px)) {
+            .holographic-card-ultimate {
+                background: rgba(255, 255, 255, 0.15);
+                border: 2px solid #3b82f6;
+            }
+        }
+    </style>
+    
     <!-- Enhanced Custom Styles -->
     <style>
         /* Loading Screen */
@@ -1642,7 +1753,36 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 
     <!-- 🚀 ULTIMATE ADVANCED FEATURES SYSTEM -->
-    <script src="advanced-features.js"></script>
+    <script>
+        // Ensure advanced features load after everything else
+        window.addEventListener('load', function() {
+            // Load advanced features script dynamically
+            const script = document.createElement('script');
+            script.src = 'advanced-features.js';
+            script.onload = function() {
+                console.log('🚀 Ultimate Advanced Features Loaded Successfully!');
+            };
+            script.onerror = function() {
+                console.warn('⚠️ Advanced features not loaded - using fallback styles');
+            };
+            document.head.appendChild(script);
+        });
+        
+        // Force re-apply holographic effects after DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const holographicCards = document.querySelectorAll('.holographic-card-ultimate');
+                holographicCards.forEach(function(card, index) {
+                    // Add a small delay for each card to ensure they appear
+                    setTimeout(function() {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.classList.add('loaded');
+                    }, index * 200);
+                });
+            }, 100);
+        });
+    </script>
 
 </body>
 </html>
