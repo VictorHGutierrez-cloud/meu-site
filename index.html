@@ -622,29 +622,7 @@
     <!-- Particle System Background -->
     <div id="particles-js"></div>
     
-    <!-- Enhanced Floating Background Elements -->
-    <div class="floating-elements">
-        <div class="floating-element floating-3d" style="left: 10%; animation-delay: 0s; font-size: 4rem;">🚀</div>
-        <div class="floating-element floating-3d" style="left: 20%; animation-delay: 5s; font-size: 3rem;">🌍💼</div>
-        <div class="floating-element floating-3d" style="left: 30%; animation-delay: 10s; font-size: 4rem;">🌍</div>
-        <div class="floating-element floating-3d" style="left: 40%; animation-delay: 15s; font-size: 3rem;">⚡</div>
-        <div class="floating-element floating-3d" style="left: 50%; animation-delay: 20s; font-size: 4rem;">🎯</div>
-        <div class="floating-element floating-3d" style="left: 60%; animation-delay: 25s; font-size: 3rem;">💡</div>
-        <div class="floating-element floating-3d" style="left: 70%; animation-delay: 30s; font-size: 4rem;">🔒</div>
-        <div class="floating-element floating-3d" style="left: 80%; animation-delay: 35s; font-size: 3rem;">📈</div>
-        <div class="floating-element floating-3d" style="left: 90%; animation-delay: 40s; font-size: 4rem;">🌟</div>
-        
-        <!-- Additional Cyber Elements -->
-        <div class="floating-element floating-3d" style="left: 15%; animation-delay: 12s; font-size: 2rem;">💻</div>
-        <div class="floating-element floating-3d" style="left: 25%; animation-delay: 17s; font-size: 3rem;">🔮</div>
-        <div class="floating-element floating-3d" style="left: 35%; animation-delay: 22s; font-size: 2rem;">⚡</div>
-        <div class="floating-element floating-3d" style="left: 45%; animation-delay: 27s; font-size: 3rem;">🎨</div>
-        <div class="floating-element floating-3d" style="left: 55%; animation-delay: 32s; font-size: 2rem;">🚀</div>
-        <div class="floating-element floating-3d" style="left: 65%; animation-delay: 37s; font-size: 3rem;">🌟</div>
-        <div class="floating-element floating-3d" style="left: 75%; animation-delay: 42s; font-size: 2rem;">💎</div>
-        <div class="floating-element floating-3d" style="left: 85%; animation-delay: 47s; font-size: 3rem;">🔮</div>
-        <div class="floating-element floating-3d" style="left: 95%; animation-delay: 52s; font-size: 2rem;">⚡</div>
-    </div>
+    <!-- Enhanced Floating Background Elements removed to avoid covering calculator -->
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect">
@@ -1968,6 +1946,16 @@ document.addEventListener("DOMContentLoaded", () => {
             script.src = 'advanced-features.js';
             script.onload = function() {
                 console.log('🚀 Ultimate Advanced Features Loaded Successfully!');
+                // Ensure the currency calculator is initialized even if the script loaded after DOMContentLoaded
+                try {
+                    const hasCalculator = document.getElementById('amount-input');
+                    if (hasCalculator && typeof window.CurrencyCalculator === 'undefined' && typeof CurrencyCalculator !== 'undefined') {
+                        window.CurrencyCalculator = new CurrencyCalculator();
+                        console.log('💱 Currency Calculator initialized (post-load).');
+                    }
+                } catch (e) {
+                    console.warn('⚠️ Failed to initialize Currency Calculator after script load:', e);
+                }
             };
             script.onerror = function() {
                 console.warn('⚠️ Advanced features not loaded - using fallback styles');
