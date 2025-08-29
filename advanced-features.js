@@ -997,3 +997,478 @@ window.ultimateAnalytics = {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = UltimateWebsiteFeatures;
 }
+
+// 💱 CURRENCY CALCULATOR IMPLEMENTATION
+class CurrencyCalculator {
+    constructor() {
+        this.apiKey = 'demo'; // Using demo mode for free tier
+        this.apiUrl = 'https://api.exchangerate-api.com/v4/latest/';
+        this.fallbackRates = {
+            USD: { BRL: 5.25, EUR: 0.85, USD: 1.0 },
+            EUR: { BRL: 6.18, USD: 1.18, EUR: 1.0 },
+            BRL: { USD: 0.19, EUR: 0.16, BRL: 1.0 }
+        };
+        this.currentRates = this.fallbackRates;
+        this.lastUpdate = new Date();
+        this.conversionFee = 0.025; // 2.5% fee
+        this.isLoading = false;
+        
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.loadExchangeRates();
+        this.updateCalculation();
+        this.startAutoRefresh();
+    }
+
+    bindEvents() {
+        // Input events
+        const amountInput = document.getElementById('amount-input');
+        const fromCurrency = document.getElementById('from-currency');
+        const toCurrency = document.getElementById('to-currency');
+        const swapButton = document.getElementById('swap-currencies');
+        const refreshButton = document.getElementById('refresh-rates');
+
+        if (amountInput) {
+            amountInput.addEventListener('input', this.debounce(() => this.updateCalculation(), 300));
+            amountInput.addEventListener('keypress', (e) => {
+                // Only allow numbers and decimal point
+                if (!/[0-9.]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Escape', 'Enter'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        if (fromCurrency) {
+            fromCurrency.addEventListener('change', () => this.updateCalculation());
+        }
+
+        if (toCurrency) {
+            toCurrency.addEventListener('change', () => this.updateCalculation());
+        }
+
+        if (swapButton) {
+            swapButton.addEventListener('click', () => this.swapCurrencies());
+        }
+
+        if (refreshButton) {
+            refreshButton.addEventListener('click', () => this.loadExchangeRates(true));
+        }
+    }
+
+    async loadExchangeRates(forceRefresh = false) {
+        if (this.isLoading && !forceRefresh) return;
+        
+        this.setLoadingState(true);
+        this.updateApiStatus('connecting', 'Atualizando cotações...');
+
+        try {
+            // Try multiple API endpoints for better reliability
+            const apis = [
+                'https://api.exchangerate-api.com/v4/latest/USD',
+                'https://api.fixer.io/latest?base=USD', // Backup API
+                'https://api.exchangeratesapi.io/v1/latest?access_key=demo&base=USD' // Another backup
+            ];
+
+            let ratesData = null;
+            
+            for (const apiUrl of apis) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json',
+                            'User-Agent': 'CurrencyCalculator/1.0'
+                        },
+                        timeout: 5000
+                    });
+
+                    if (response.ok) {
+                        ratesData = await response.json();
+                        break;
+                    }
+                } catch (error) {
+                    console.warn(`API ${apiUrl} failed:`, error);
+                    continue;
+                }
+            }
+
+            if (ratesData && ratesData.rates) {
+                this.processRatesData(ratesData.rates);
+                this.updateApiStatus('connected', 'Conectado - Cotações Atualizadas');
+            } else {
+                throw new Error('No API responded successfully');
+            }
+
+        } catch (error) {
+            console.warn('Failed to load live rates, using fallback:', error);
+            this.useSimulatedRates();
+            this.updateApiStatus('error', 'Usando cotações simuladas');
+        } finally {
+            this.setLoadingState(false);
+            this.updateCalculation();
+            this.updateLastUpdateTime();
+        }
+    }
+
+    processRatesData(rates) {
+        // Convert API rates to our format
+        this.currentRates = {
+            USD: {
+                BRL: rates.BRL || 5.25,
+                EUR: rates.EUR || 0.85,
+                USD: 1.0
+            },
+            EUR: {
+                BRL: (rates.BRL || 5.25) / (rates.EUR || 0.85),
+                USD: 1 / (rates.EUR || 0.85),
+                EUR: 1.0
+            },
+            BRL: {
+                USD: 1 / (rates.BRL || 5.25),
+                EUR: (rates.EUR || 0.85) / (rates.BRL || 5.25),
+                BRL: 1.0
+            }
+        };
+        
+        this.lastUpdate = new Date();
+    }
+
+    useSimulatedRates() {
+        // Generate slightly random rates for demo purposes
+        const variance = 0.02; // 2% variance
+        const baseRates = this.fallbackRates;
+        
+        Object.keys(baseRates).forEach(from => {
+            Object.keys(baseRates[from]).forEach(to => {
+                if (from !== to) {
+                    const baseRate = baseRates[from][to];
+                    const randomVariance = (Math.random() - 0.5) * variance;
+                    this.currentRates[from][to] = baseRate * (1 + randomVariance);
+                }
+            });
+        });
+        
+        this.lastUpdate = new Date();
+    }
+
+    updateCalculation() {
+        const amount = parseFloat(document.getElementById('amount-input')?.value) || 0;
+        const fromCurrency = document.getElementById('from-currency')?.value || 'USD';
+        const toCurrency = document.getElementById('to-currency')?.value || 'BRL';
+
+        if (amount <= 0) {
+            this.clearResults();
+            return;
+        }
+
+        // Get exchange rate
+        const rate = this.getExchangeRate(fromCurrency, toCurrency);
+        const baseConversion = amount * rate;
+        const feeAmount = baseConversion * this.conversionFee;
+        const finalAmount = baseConversion - feeAmount;
+
+        // Update UI
+        this.updateConvertedAmount(finalAmount, toCurrency);
+        this.updateRateDisplays(fromCurrency, toCurrency, rate);
+        this.updateConversionDetails(amount, fromCurrency, rate, baseConversion, feeAmount, finalAmount, toCurrency);
+    }
+
+    getExchangeRate(from, to) {
+        if (from === to) return 1.0;
+        return this.currentRates[from]?.[to] || this.fallbackRates[from]?.[to] || 1.0;
+    }
+
+    updateConvertedAmount(amount, currency) {
+        const element = document.getElementById('converted-amount');
+        if (!element) return;
+
+        const formattedAmount = this.formatCurrency(amount, currency);
+        element.textContent = formattedAmount;
+        
+        // Add animation effect
+        element.classList.add('calculator-loading');
+        setTimeout(() => element.classList.remove('calculator-loading'), 500);
+    }
+
+    updateRateDisplays(fromCurrency, toCurrency, rate) {
+        const fromDisplay = document.getElementById('current-rate-from');
+        const toDisplay = document.getElementById('current-rate-to');
+
+        if (fromDisplay) {
+            fromDisplay.textContent = `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}`;
+        }
+
+        if (toDisplay) {
+            const reverseRate = 1 / rate;
+            toDisplay.textContent = `1 ${toCurrency} = ${reverseRate.toFixed(4)} ${fromCurrency}`;
+        }
+    }
+
+    updateConversionDetails(originalAmount, fromCurrency, rate, baseConversion, feeAmount, finalAmount, toCurrency) {
+        // Update original amount
+        const originalElement = document.getElementById('original-amount');
+        if (originalElement) {
+            originalElement.textContent = this.formatCurrency(originalAmount, fromCurrency);
+        }
+
+        // Update applied rate
+        const rateElement = document.getElementById('applied-rate');
+        if (rateElement) {
+            rateElement.textContent = rate.toFixed(4);
+        }
+
+        // Update conversion fee percentage
+        const feeElement = document.getElementById('conversion-fee');
+        if (feeElement) {
+            feeElement.textContent = `${(this.conversionFee * 100).toFixed(1)}%`;
+        }
+
+        // Update breakdown
+        const baseElement = document.getElementById('base-conversion');
+        if (baseElement) {
+            baseElement.textContent = this.formatCurrency(baseConversion, toCurrency);
+        }
+
+        const feeAmountElement = document.getElementById('fee-amount');
+        if (feeAmountElement) {
+            feeAmountElement.textContent = `- ${this.formatCurrency(feeAmount, toCurrency)}`;
+        }
+
+        const finalAmountElement = document.getElementById('final-amount');
+        if (finalAmountElement) {
+            finalAmountElement.textContent = this.formatCurrency(finalAmount, toCurrency);
+        }
+    }
+
+    swapCurrencies() {
+        const fromSelect = document.getElementById('from-currency');
+        const toSelect = document.getElementById('to-currency');
+        
+        if (!fromSelect || !toSelect) return;
+
+        // Animate swap button
+        const swapButton = document.getElementById('swap-currencies');
+        if (swapButton) {
+            swapButton.style.transform = 'scale(0.9) rotate(180deg)';
+            setTimeout(() => {
+                swapButton.style.transform = 'scale(1) rotate(0deg)';
+            }, 200);
+        }
+
+        // Swap values
+        const fromValue = fromSelect.value;
+        const toValue = toSelect.value;
+        
+        fromSelect.value = toValue;
+        toSelect.value = fromValue;
+
+        // Update calculation
+        setTimeout(() => this.updateCalculation(), 300);
+
+        // Add visual feedback
+        this.showSwapAnimation();
+    }
+
+    showSwapAnimation() {
+        // Create animated swap effect
+        const calculator = document.querySelector('.holographic-card-ultimate');
+        if (calculator) {
+            calculator.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                calculator.style.transform = 'scale(1)';
+            }, 300);
+        }
+    }
+
+    formatCurrency(amount, currency) {
+        const currencySymbols = {
+            USD: '$',
+            EUR: '€',
+            BRL: 'R$'
+        };
+
+        const locales = {
+            USD: 'en-US',
+            EUR: 'de-DE',
+            BRL: 'pt-BR'
+        };
+
+        try {
+            return new Intl.NumberFormat(locales[currency] || 'en-US', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        } catch (error) {
+            // Fallback formatting
+            const symbol = currencySymbols[currency] || currency;
+            return `${symbol} ${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        }
+    }
+
+    clearResults() {
+        const elements = [
+            'converted-amount',
+            'original-amount',
+            'applied-rate',
+            'base-conversion',
+            'fee-amount',
+            'final-amount'
+        ];
+
+        elements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = '--';
+            }
+        });
+    }
+
+    updateApiStatus(status, message) {
+        const statusElement = document.getElementById('api-status');
+        if (!statusElement) return;
+
+        // Remove existing status classes
+        statusElement.className = statusElement.className.replace(/\b(connected|connecting|error)\b/g, '');
+        statusElement.classList.add(status);
+
+        const dotElement = statusElement.querySelector('.w-2.h-2');
+        const textElement = statusElement.querySelector('span');
+
+        if (textElement) {
+            textElement.textContent = message;
+        }
+
+        // Update dot color based on status
+        if (dotElement) {
+            dotElement.className = dotElement.className.replace(/bg-\w+-\d+/g, '');
+            const colors = {
+                connected: 'bg-green-500',
+                connecting: 'bg-yellow-500',
+                error: 'bg-red-500'
+            };
+            dotElement.classList.add(colors[status] || 'bg-gray-500');
+        }
+    }
+
+    updateLastUpdateTime() {
+        const element = document.getElementById('last-update');
+        if (!element) return;
+
+        const now = new Date();
+        const diffMs = now - this.lastUpdate;
+        const diffMins = Math.floor(diffMs / 60000);
+
+        let timeText;
+        if (diffMins === 0) {
+            timeText = 'Agora mesmo';
+        } else if (diffMins === 1) {
+            timeText = 'Há 1 minuto';
+        } else if (diffMins < 60) {
+            timeText = `Há ${diffMins} minutos`;
+        } else {
+            const diffHours = Math.floor(diffMins / 60);
+            timeText = diffHours === 1 ? 'Há 1 hora' : `Há ${diffHours} horas`;
+        }
+
+        element.textContent = timeText;
+    }
+
+    setLoadingState(loading) {
+        this.isLoading = loading;
+        const refreshButton = document.getElementById('refresh-rates');
+        
+        if (refreshButton) {
+            if (loading) {
+                refreshButton.classList.add('loading');
+                refreshButton.disabled = true;
+            } else {
+                refreshButton.classList.remove('loading');
+                refreshButton.disabled = false;
+            }
+        }
+    }
+
+    startAutoRefresh() {
+        // Refresh rates every 5 minutes
+        setInterval(() => {
+            this.loadExchangeRates();
+        }, 5 * 60 * 1000);
+
+        // Update time display every minute
+        setInterval(() => {
+            this.updateLastUpdateTime();
+        }, 60 * 1000);
+    }
+
+    // Utility function for debouncing
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Public method to manually refresh
+    refresh() {
+        this.loadExchangeRates(true);
+    }
+
+    // Public method to get current rates
+    getCurrentRates() {
+        return this.currentRates;
+    }
+
+    // Public method to set custom fee
+    setConversionFee(fee) {
+        this.conversionFee = Math.max(0, Math.min(1, fee)); // Clamp between 0 and 100%
+        this.updateCalculation();
+    }
+}
+
+// Initialize Currency Calculator when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Only initialize if calculator elements exist
+    if (document.getElementById('amount-input')) {
+        const calculator = new CurrencyCalculator();
+        
+        // Store global reference for debugging and external access
+        window.CurrencyCalculator = calculator;
+        
+        console.log('💱 Currency Calculator Initialized!');
+        console.log('📊 Exchange Rates: Loading...');
+        console.log('🔄 Auto-refresh: Every 5 minutes');
+    }
+});
+
+// Add calculator to the global features
+if (typeof UltimateWebsiteFeatures !== 'undefined') {
+    UltimateWebsiteFeatures.prototype.initializeCurrencyCalculator = function() {
+        if (document.getElementById('amount-input')) {
+            this.currencyCalculator = new CurrencyCalculator();
+        }
+    };
+}
+
+// 🎯 ANALYTICS INTEGRATION FOR CALCULATOR
+window.ultimateAnalytics = window.ultimateAnalytics || {};
+window.ultimateAnalytics.trackCurrencyConversion = function(from, to, amount) {
+    console.log(`💱 Conversion: ${amount} ${from} → ${to}`);
+    // Here you could send data to Google Analytics, Mixpanel, etc.
+};
+
+// 📱 PWA SUPPORT FOR CALCULATOR
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/calculator-sw.js').catch(error => {
+        console.log('Calculator SW registration failed:', error);
+    });
+}
