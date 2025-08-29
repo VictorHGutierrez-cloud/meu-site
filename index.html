@@ -81,6 +81,27 @@
             --cyber-purple: #8b5cf6;
             --gold: #ffd700;
             --platinum: #e5e4e2;
+            
+            /* Dark mode variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-accent: #1e3a8a;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-accent: #60a5fa;
+            --border-color: #475569;
+            --shadow-color: rgba(0, 0, 0, 0.3);
         }
         
         * {
@@ -89,9 +110,10 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--light);
-            color: var(--dark);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow-x: hidden;
+            transition: all 0.3s ease;
         }
         
         .hero-gradient {
@@ -165,33 +187,19 @@
         }
         
         .neon-text {
-            color: var(--neon-blue);
-            text-shadow: 
-                0 0 5px var(--neon-blue),
-                0 0 10px var(--neon-blue),
-                0 0 15px var(--neon-blue),
-                0 0 20px var(--neon-blue);
-            animation: neon-pulse 2s ease-in-out infinite alternate;
+            color: var(--text-accent);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .cyber-text {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple), var(--neon-green));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: cyber-shift 3s ease-in-out infinite;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-accent);
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
         
-        @keyframes neon-pulse {
-            0% { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 20px var(--neon-blue); }
-            100% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-blue); }
-        }
-        
-        @keyframes cyber-shift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(180deg); }
-        }
+        /* Removed excessive neon animations for professional look */
         
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -223,31 +231,32 @@
         }
         
         .holographic-card {
-            background: linear-gradient(45deg, 
-                rgba(255, 255, 255, 0.1), 
-                rgba(0, 212, 255, 0.1), 
-                rgba(139, 92, 246, 0.1), 
-                rgba(0, 255, 136, 0.1));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
         
-        .holographic-card::after {
+        .holographic-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
-        .holographic-card:hover::after {
-            transform: translateX(100%);
+        .holographic-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .holographic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-color);
         }
         
         .nav-link {
@@ -287,12 +296,11 @@
         }
         
         .cyber-button {
-            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
-            border: 2px solid var(--neon-blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
             color: white;
-            font-family: 'Orbitron', monospace;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -305,7 +313,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s;
         }
         
@@ -314,10 +322,8 @@
         }
         
         .cyber-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 10px 20px rgba(0, 212, 255, 0.4),
-                0 0 30px rgba(0, 212, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--shadow-color);
         }
         
         .stat-counter {
@@ -509,6 +515,16 @@
                     <a href="#solution" class="nav-link text-white font-medium">Our Solution</a>
                     <a href="#alliance" class="nav-link text-white font-medium">The Alliance</a>
                 </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors">
+                        <svg id="sun-icon" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -524,29 +540,27 @@
 <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
     <div class="text-center text-white z-10 px-6">
         <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span class="typing-effect cyber-text">🚀 REVOLUTIONIZE</span>
+            <span class="typing-effect cyber-text">Transform</span>
             <br>
             <span class="neon-text">"Custo Brasil"</span>
             <br>
-            <span class="gradient-text">with UNSTOPPABLE Power</span>
+            <span class="gradient-text">into Opportunity</span>
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto opacity-90 leading-relaxed">
-            <span class="font-bold text-yellow-300">BREAKING NEWS:</span> The most powerful alliance in Brazilian expansion history is here. 
-            <span class="neon-text font-bold">Payoneer + LexBridge = UNLIMITED POSSIBILITIES</span>
+            The strategic alliance between <span class="font-bold text-yellow-300">Payoneer</span> and <span class="font-bold text-blue-300">LexBridge</span> 
+            creates the ultimate solution for U.S. companies expanding into Brazil.
         </p>
         <div class="mb-8">
-            <div class="inline-block bg-gradient-to-r from-red-500 to-yellow-500 text-white px-6 py-3 rounded-full font-bold text-lg animate-pulse">
-                ⚡ LIVE: Transforming U.S. Companies into Brazilian Market Leaders
+            <div class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-bold text-lg">
+                🚀 Your Gateway to Brazilian Market Success
             </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-            <a href="#solution" class="cyber-button text-white font-bold py-5 px-10 rounded-full text-xl transform hover:scale-105 shadow-2xl relative overflow-hidden">
-                <span class="relative z-10">🚀 UNLOCK THE SOLUTION</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <a href="#solution" class="cyber-button text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 shadow-lg relative overflow-hidden">
+                <span class="relative z-10">Discover Our Solution</span>
             </a>
-            <a href="#alliance" class="cyber-button bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-5 px-10 rounded-full text-xl transform hover:scale-105 border-2 border-purple-400 relative overflow-hidden">
-                <span class="relative z-10">🤝 JOIN THE REVOLUTION</span>
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <a href="#alliance" class="cyber-button bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg transform hover:scale-105 relative overflow-hidden">
+                <span class="relative z-10">Learn About the Partnership</span>
             </a>
         </div>
     </div>
@@ -617,51 +631,48 @@
 </section>
 
 <!-- Market Section -->
-<section id="market" class="py-20 bg-white relative z-10">
+<section id="market" class="py-20 relative z-10" style="background: var(--bg-secondary);">
   <div class="max-w-7xl mx-auto px-6">
     <!-- Título -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        <span class="cyber-text">BRAZILIAN MARKET:</span> 
+      <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+        <span class="cyber-text">Brazilian Market:</span> 
         <br>
-        <span class="neon-text">UNLIMITED POTENTIAL</span>
+        <span class="neon-text">Massive Opportunity</span>
         <br>
-        <span class="gradient-text">MEETS REVOLUTIONARY SOLUTION!</span>
+        <span class="gradient-text">Meets Strategic Solution</span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-        <span class="font-bold text-red-600">WARNING:</span> Brazil presents <span class="font-bold text-green-600">MASSIVE OPPORTUNITY</span>, but navigating the "Custo Brasil" demands 
-        <span class="font-bold text-blue-600">REVOLUTIONARY INTEGRATED INFRASTRUCTURE</span> - and that's exactly what we deliver!
+      <p class="text-xl max-w-4xl mx-auto leading-relaxed" style="color: var(--text-secondary);">
+        Brazil presents <span class="font-bold" style="color: var(--text-accent);">significant opportunities</span>, but navigating the "Custo Brasil" requires 
+        <span class="font-bold" style="color: var(--text-accent);">integrated infrastructure</span> - and that's exactly what we deliver.
       </p>
-      <div class="mt-6 inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl">
-        🎯 THE NUMBERS DON'T LIE - SEE FOR YOURSELF!
+      <div class="mt-6 inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+        📊 Market Statistics
       </div>
     </div>
 
     <!-- Cards -->
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-blue-200 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-400"></div>
-        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="65">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">% of U.S. Companies</h3>
-        <p class="text-gray-600 font-medium">without presence in Brazil <span class="font-bold text-blue-600">WILLING TO START OPERATIONS</span> - and we're here to make it happen!</p>
-        <div class="absolute bottom-0 right-0 text-6xl opacity-20">🚀</div>
-      </div>
+             <div class="holographic-card card-hover p-8 rounded-2xl text-center relative overflow-hidden">
+         <div class="stat-counter text-6xl font-extrabold mb-4" data-target="65" style="color: var(--text-accent);">0</div>
+         <h3 class="text-2xl font-bold mb-2 neon-text" style="color: var(--text-primary);">% of U.S. Companies</h3>
+         <p class="font-medium" style="color: var(--text-secondary);">without presence in Brazil <span class="font-bold" style="color: var(--text-accent);">willing to start operations</span> - and we're here to make it happen!</p>
+         <div class="absolute bottom-0 right-0 text-6xl opacity-20">🚀</div>
+       </div>
 
-      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-green-200 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-400"></div>
-        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="89">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">% of Established U.S. Companies</h3>
-        <p class="text-gray-600 font-medium">plan to <span class="text-green-600 font-bold">EXPAND EXISTING OPERATIONS</span> in Brazil - let's accelerate their growth!</p>
-        <div class="absolute bottom-0 right-0 text-6xl opacity-20">📈</div>
-      </div>
+             <div class="holographic-card card-hover p-8 rounded-2xl text-center relative overflow-hidden">
+         <div class="stat-counter text-6xl font-extrabold mb-4" data-target="89" style="color: var(--text-accent);">0</div>
+         <h3 class="text-2xl font-bold mb-2 neon-text" style="color: var(--text-primary);">% of Established U.S. Companies</h3>
+         <p class="font-medium" style="color: var(--text-secondary);">plan to <span class="font-bold" style="color: var(--text-accent);">expand existing operations</span> in Brazil - let's accelerate their growth!</p>
+         <div class="absolute bottom-0 right-0 text-6xl opacity-20">📈</div>
+       </div>
 
-      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-yellow-200 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-400"></div>
-        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="9553">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">Brazilian Companies</h3>
-        <p class="text-gray-600 font-medium">exported to the U.S., <span class="text-yellow-600 font-bold">RECORD TRADE RELATIONS</span> - and this is just the beginning!</p>
-        <div class="absolute bottom-0 right-0 text-6xl opacity-20">🌍</div>
-      </div>
+       <div class="holographic-card card-hover p-8 rounded-2xl text-center relative overflow-hidden">
+         <div class="stat-counter text-6xl font-extrabold mb-4" data-target="9553" style="color: var(--text-accent);">0</div>
+         <h3 class="text-2xl font-bold mb-2 neon-text" style="color: var(--text-primary);">Brazilian Companies</h3>
+         <p class="font-medium" style="color: var(--text-secondary);">exported to the U.S., <span class="font-bold" style="color: var(--text-accent);">record trade relations</span> - and this is just the beginning!</p>
+         <div class="absolute bottom-0 right-0 text-6xl opacity-20">🌍</div>
+       </div>
     </div>
   </div>
 </section>
@@ -710,7 +721,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     <!-- Fintech Section -->
-    <section id="fintech" class="py-20 bg-gradient-to-r from-gray-50 to-blue-50">
+    <section id="fintech" class="py-20" style="background: var(--bg-primary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -738,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </section>
 
     <!-- Solutions Section -->
-    <section id="solution" class="py-20 bg-white">
+    <section id="solution" class="py-20" style="background: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -875,7 +886,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     <!-- Alliance Section -->
-<section id="alliance" class="py-20 bg-white relative z-10">
+<section id="alliance" class="py-20 relative z-10" style="background: var(--bg-primary);">
     <div class="container mx-auto px-6">
         <!-- Heading -->
         <div class="text-center mb-12">
@@ -954,7 +965,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </section>
 
     <!-- Enhanced Footer -->
-    <footer class="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white py-16 relative overflow-hidden">
+    <footer class="py-16 relative overflow-hidden" style="background: var(--bg-tertiary); color: var(--text-primary);">
         <!-- Animated background elements -->
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full animate-ping"></div>
@@ -1067,6 +1078,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }, 2000);
         });
+        
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+        
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
         
         // Enhanced Mobile Menu
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1232,19 +1272,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Enhanced GSAP Animations
         gsap.from('.hero-gradient h1', {
-            duration: 2,
-            y: 100,
+            duration: 1.5,
+            y: 50,
             opacity: 0,
-            ease: 'power3.out',
-            onComplete: () => {
-                // Add typing effect to cyber-text elements
-                gsap.to('.cyber-text', {
-                    duration: 0.1,
-                    textShadow: '0 0 20px currentColor',
-                    yoyo: true,
-                    repeat: 3
-                });
-            }
+            ease: 'power2.out'
         });
         
         gsap.from('.hero-gradient p', {
@@ -1274,13 +1305,13 @@ document.addEventListener("DOMContentLoaded", () => {
             stagger: 0.1
         });
         
-        // Floating elements enhanced animation
+        // Subtle floating animation
         gsap.to('.floating-3d', {
-            y: -30,
-            rotationY: 360,
-            duration: 8,
-            ease: 'none',
+            y: -10,
+            duration: 4,
+            ease: 'power1.inOut',
             repeat: -1,
+            yoyo: true,
             stagger: 0.5
         });
         
@@ -1335,10 +1366,9 @@ document.addEventListener("DOMContentLoaded", () => {
             stagger: 0.3
         });
         
-        // Enhanced Parallax effects for floating elements
+        // Subtle parallax effect for floating elements
         gsap.to('.floating', {
-            y: -100,
-            rotationY: 180,
+            y: -30,
             ease: 'none',
             scrollTrigger: {
                 trigger: '.hero-gradient',
@@ -1348,34 +1378,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        gsap.to('.floating-3d', {
-            y: -150,
-            rotationX: 360,
-            rotationZ: 180,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero-gradient',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
-        
-        // Interactive mouse effects
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            
-            gsap.to('.floating-3d', {
-                duration: 1,
-                x: (clientX - centerX) * 0.02,
-                y: (clientY - centerY) * 0.02,
-                ease: 'power2.out'
-            });
-        });
-        
-        // Enhanced counter animation with sound effects simulation
+        // Simple counter animation
         function animateCounterWithImpact(element, target, duration = 2000) {
             let start = 0;
             const increment = target / (duration / 16);
@@ -1384,24 +1387,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 start += increment;
                 if (start < target) {
                     element.textContent = Math.floor(start);
-                    // Add visual impact effect
-                    gsap.to(element, {
-                        duration: 0.1,
-                        scale: 1.2,
-                        yoyo: true,
-                        repeat: 1
-                    });
                     requestAnimationFrame(updateCounter);
                 } else {
                     element.textContent = target;
-                    // Final celebration effect
-                    gsap.to(element, {
-                        duration: 0.5,
-                        scale: 1.1,
-                        textShadow: '0 0 30px currentColor',
-                        yoyo: true,
-                        repeat: 2
-                    });
                 }
             }
             
