@@ -321,11 +321,11 @@
 
 /* 🌈 Holographic Card */
 .holographic-card-ultimate {
-    background: var(--glass-bg);
-    backdrop-filter: blur(30px);
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-neon);
+    box-shadow: var(--shadow-medium);
     position: relative;
     overflow: hidden;
     transition: all var(--transition-bounce);
@@ -335,20 +335,20 @@
     content: '';
     position: absolute;
     inset: 0;
-    padding: 2px;
-    background: var(--rainbow-gradient);
-    background-size: 400% 400%;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+    background-size: 200% 200%;
     border-radius: inherit;
-    animation: aurora-dance 6s linear infinite;
+    animation: none;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: xor;
     -webkit-mask-composite: xor;
 }
 
 .holographic-card-ultimate:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: var(--shadow-rainbow);
-    animation: liquid-morph 4s ease infinite;
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: var(--shadow-heavy);
+    animation: none;
 }
 
 /* 💎 Glass Morphism Ultra */
