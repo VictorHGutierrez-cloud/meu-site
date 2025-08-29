@@ -5,21 +5,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payoneer & LexBridge: The Ultimate Brazilian Expansion Solution</title>
+    <title>🚀 Payoneer & LexBridge: The Ultimate Brazilian Expansion Revolution</title>
     
-    <!-- Modern CSS Framework -->
+    <!-- Enhanced CSS Framework -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     
-    <!-- Google Fonts -->
+    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Custom Styles -->
+    <!-- Enhanced Custom Styles -->
     <style>
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #3b82f6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #f59e0b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .loading-subtext {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
         :root {
             --primary: #1e3a8a;
             --secondary: #f59e0b;
@@ -27,6 +75,12 @@
             --dark: #0f172a;
             --light: #f8fafc;
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --neon-blue: #00d4ff;
+            --neon-orange: #ff6b35;
+            --neon-green: #00ff88;
+            --cyber-purple: #8b5cf6;
+            --gold: #ffd700;
+            --platinum: #e5e4e2;
         }
         
         * {
@@ -42,6 +96,27 @@
         
         .hero-gradient {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+            animation: pulse-glow 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.1); }
         }
         
         .glass-effect {
@@ -52,11 +127,33 @@
         
         .floating {
             animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .floating-3d {
+            animation: float-3d 8s ease-in-out infinite;
+            transform-style: preserve-3d;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(180deg); }
+        }
+        
+        @keyframes float-3d {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
+            }
+            25% { 
+                transform: translateY(-15px) rotateX(90deg) rotateY(90deg) rotateZ(0deg); 
+            }
+            50% { 
+                transform: translateY(-30px) rotateX(180deg) rotateY(180deg) rotateZ(90deg); 
+            }
+            75% { 
+                transform: translateY(-15px) rotateX(270deg) rotateY(270deg) rotateZ(180deg); 
+            }
         }
         
         .gradient-text {
@@ -64,15 +161,93 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
+        
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 
+                0 0 5px var(--neon-blue),
+                0 0 10px var(--neon-blue),
+                0 0 15px var(--neon-blue),
+                0 0 20px var(--neon-blue);
+            animation: neon-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        .cyber-text {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: cyber-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes neon-pulse {
+            0% { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue), 0 0 20px var(--neon-blue); }
+            100% { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-blue); }
+        }
+        
+        @keyframes cyber-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
         }
         
         .card-hover {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
         }
         
         .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-10px) scale(1.02) rotateY(5deg);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 0 30px rgba(0, 212, 255, 0.3),
+                0 0 60px rgba(139, 92, 246, 0.2);
+        }
+        
+        .holographic-card {
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.1), 
+                rgba(0, 212, 255, 0.1), 
+                rgba(139, 92, 246, 0.1), 
+                rgba(0, 255, 136, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .holographic-card:hover::after {
+            transform: translateX(100%);
         }
         
         .nav-link {
@@ -87,12 +262,62 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--secondary);
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-orange));
             transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-blue);
         }
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        .nav-link:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .cyber-button {
+            background: linear-gradient(45deg, var(--neon-blue), var(--cyber-purple));
+            border: 2px solid var(--neon-blue);
+            color: white;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 20px rgba(0, 212, 255, 0.4),
+                0 0 30px rgba(0, 212, 255, 0.6);
         }
         
         .stat-counter {
@@ -133,6 +358,42 @@
         @media (max-width: 768px) {
             .chart-container {
                 height: 300px;
+            }
+            
+            .hero-gradient h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .cyber-button {
+                font-size: 1rem !important;
+                padding: 0.75rem 1.5rem !important;
+            }
+            
+            .floating-3d {
+                font-size: 2rem !important;
+            }
+            
+            .holographic-card {
+                padding: 1.5rem !important;
+            }
+        }
+        
+        /* Touch device enhancements */
+        @media (hover: none) and (pointer: coarse) {
+            .card-hover:hover {
+                transform: none;
+            }
+            
+            .cyber-button:hover {
+                transform: none;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .neon-text {
+                text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
             }
         }
         
@@ -198,17 +459,40 @@
     </style>
 </head>
 <body>
-    <!-- Floating Background Elements -->
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">🚀 INITIALIZING REVOLUTION</div>
+            <div class="loading-subtext">Preparing the ultimate Brazilian expansion experience...</div>
+        </div>
+    </div>
+    
+    <!-- Particle System Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Enhanced Floating Background Elements -->
     <div class="floating-elements">
-        <div class="floating-element" style="left: 10%; animation-delay: 0s;">🚀</div>
-        <div class="floating-element" style="left: 20%; animation-delay: 5s;">🌍💼</div>
-        <div class="floating-element" style="left: 30%; animation-delay: 10s;">🌍</div>
-        <div class="floating-element" style="left: 40%; animation-delay: 15s;">⚡</div>
-        <div class="floating-element" style="left: 50%; animation-delay: 20s;">🎯</div>
-        <div class="floating-element" style="left: 60%; animation-delay: 25s;">💡</div>
-        <div class="floating-element" style="left: 70%; animation-delay: 30s;">🔒</div>
-        <div class="floating-element" style="left: 80%; animation-delay: 35s;">📈</div>
-        <div class="floating-element" style="left: 90%; animation-delay: 40s;">🌟</div>
+        <div class="floating-element floating-3d" style="left: 10%; animation-delay: 0s; font-size: 4rem;">🚀</div>
+        <div class="floating-element floating-3d" style="left: 20%; animation-delay: 5s; font-size: 3rem;">🌍💼</div>
+        <div class="floating-element floating-3d" style="left: 30%; animation-delay: 10s; font-size: 4rem;">🌍</div>
+        <div class="floating-element floating-3d" style="left: 40%; animation-delay: 15s; font-size: 3rem;">⚡</div>
+        <div class="floating-element floating-3d" style="left: 50%; animation-delay: 20s; font-size: 4rem;">🎯</div>
+        <div class="floating-element floating-3d" style="left: 60%; animation-delay: 25s; font-size: 3rem;">💡</div>
+        <div class="floating-element floating-3d" style="left: 70%; animation-delay: 30s; font-size: 4rem;">🔒</div>
+        <div class="floating-element floating-3d" style="left: 80%; animation-delay: 35s; font-size: 3rem;">📈</div>
+        <div class="floating-element floating-3d" style="left: 90%; animation-delay: 40s; font-size: 4rem;">🌟</div>
+        
+        <!-- Additional Cyber Elements -->
+        <div class="floating-element floating-3d" style="left: 15%; animation-delay: 12s; font-size: 2rem;">💻</div>
+        <div class="floating-element floating-3d" style="left: 25%; animation-delay: 17s; font-size: 3rem;">🔮</div>
+        <div class="floating-element floating-3d" style="left: 35%; animation-delay: 22s; font-size: 2rem;">⚡</div>
+        <div class="floating-element floating-3d" style="left: 45%; animation-delay: 27s; font-size: 3rem;">🎨</div>
+        <div class="floating-element floating-3d" style="left: 55%; animation-delay: 32s; font-size: 2rem;">🚀</div>
+        <div class="floating-element floating-3d" style="left: 65%; animation-delay: 37s; font-size: 3rem;">🌟</div>
+        <div class="floating-element floating-3d" style="left: 75%; animation-delay: 42s; font-size: 2rem;">💎</div>
+        <div class="floating-element floating-3d" style="left: 85%; animation-delay: 47s; font-size: 3rem;">🔮</div>
+        <div class="floating-element floating-3d" style="left: 95%; animation-delay: 52s; font-size: 2rem;">⚡</div>
     </div>
 
     <!-- Navigation -->
@@ -240,19 +524,29 @@
 <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
     <div class="text-center text-white z-10 px-6">
         <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span class="typing-effect">Conquer "Custo Brasil"</span>
+            <span class="typing-effect cyber-text">🚀 REVOLUTIONIZE</span>
             <br>
-            <span class="gradient-text">with full Compliance Coverage</span>
+            <span class="neon-text">"Custo Brasil"</span>
+            <br>
+            <span class="gradient-text">with UNSTOPPABLE Power</span>
         </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto opacity-90">
-            Providing U.S. companies with an end-to-end legal & financial framework for seamless expansion into Brazil.
+        <p class="text-xl md:text-2xl mb-8 max-w-4xl mx-auto opacity-90 leading-relaxed">
+            <span class="font-bold text-yellow-300">BREAKING NEWS:</span> The most powerful alliance in Brazilian expansion history is here. 
+            <span class="neon-text font-bold">Payoneer + LexBridge = UNLIMITED POSSIBILITIES</span>
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#solution" class="bg-yellow-400 text-blue-900 font-bold py-4 px-8 rounded-full text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                🚀 Discover the Solution
+        <div class="mb-8">
+            <div class="inline-block bg-gradient-to-r from-red-500 to-yellow-500 text-white px-6 py-3 rounded-full font-bold text-lg animate-pulse">
+                ⚡ LIVE: Transforming U.S. Companies into Brazilian Market Leaders
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a href="#solution" class="cyber-button text-white font-bold py-5 px-10 rounded-full text-xl transform hover:scale-105 shadow-2xl relative overflow-hidden">
+                <span class="relative z-10">🚀 UNLOCK THE SOLUTION</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
             </a>
-            <a href="#alliance" class="border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:scale-105">
-                🤝 Join the Alliance
+            <a href="#alliance" class="cyber-button bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-5 px-10 rounded-full text-xl transform hover:scale-105 border-2 border-purple-400 relative overflow-hidden">
+                <span class="relative z-10">🤝 JOIN THE REVOLUTION</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
             </a>
         </div>
     </div>
@@ -328,31 +622,45 @@
     <!-- Título -->
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        Brazilian Market: <span class="gradient-text">High Potential, High Complexity!</span>
+        <span class="cyber-text">BRAZILIAN MARKET:</span> 
+        <br>
+        <span class="neon-text">UNLIMITED POTENTIAL</span>
+        <br>
+        <span class="gradient-text">MEETS REVOLUTIONARY SOLUTION!</span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-        Brazil presents massive opportunity, but navigating the "Custo Brasil" demands integrated operational infrastructure.
+      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        <span class="font-bold text-red-600">WARNING:</span> Brazil presents <span class="font-bold text-green-600">MASSIVE OPPORTUNITY</span>, but navigating the "Custo Brasil" demands 
+        <span class="font-bold text-blue-600">REVOLUTIONARY INTEGRATED INFRASTRUCTURE</span> - and that's exactly what we deliver!
       </p>
+      <div class="mt-6 inline-block bg-gradient-to-r from-green-400 to-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl">
+        🎯 THE NUMBERS DON'T LIE - SEE FOR YOURSELF!
+      </div>
     </div>
 
     <!-- Cards -->
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl text-center border border-blue-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="65">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">% of U.S. Companies</h3>
-        <p class="text-gray-600">without presence in Brazil willing to start operations.</p>
+      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-blue-200 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="65">0</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">% of U.S. Companies</h3>
+        <p class="text-gray-600 font-medium">without presence in Brazil <span class="font-bold text-blue-600">WILLING TO START OPERATIONS</span> - and we're here to make it happen!</p>
+        <div class="absolute bottom-0 right-0 text-6xl opacity-20">🚀</div>
       </div>
 
-      <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl text-center border border-green-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="89">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">% of Established U.S. Companies</h3>
-        <p class="text-gray-600">plan to expand existing operations in Brazil.</p>
+      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-green-200 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-emerald-400"></div>
+        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="89">0</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">% of Established U.S. Companies</h3>
+        <p class="text-gray-600 font-medium">plan to <span class="text-green-600 font-bold">EXPAND EXISTING OPERATIONS</span> in Brazil - let's accelerate their growth!</p>
+        <div class="absolute bottom-0 right-0 text-6xl opacity-20">📈</div>
       </div>
 
-      <div class="card-hover bg-gradient-to-br from-yellow-50 to-orange-100 p-8 rounded-2xl text-center border border-yellow-200">
-        <div class="stat-counter text-5xl font-extrabold text-[#003366] mb-4" data-target="9553">0</div>
-        <h3 class="text-2xl font-bold text-gray-900 mb-2">Brazilian Companies</h3>
-        <p class="text-gray-600">exported to the U.S., record trade relations.</p>
+      <div class="holographic-card card-hover p-8 rounded-2xl text-center border border-yellow-200 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-400"></div>
+        <div class="stat-counter text-6xl font-extrabold text-[#003366] mb-4" data-target="9553">0</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2 neon-text">Brazilian Companies</h3>
+        <p class="text-gray-600 font-medium">exported to the U.S., <span class="text-yellow-600 font-bold">RECORD TRADE RELATIONS</span> - and this is just the beginning!</p>
+        <div class="absolute bottom-0 right-0 text-6xl opacity-20">🌍</div>
       </div>
     </div>
   </div>
@@ -365,27 +673,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const runCounter = (counter) => {
     const target = +counter.getAttribute("data-target");
-    const duration = 2000; // duração total (ms)
-    const steps = 60; // quantidade de frames
-    const increment = target / steps;
-    let count = 0;
-    let stepTime = duration / steps;
-
-    const updateCount = () => {
-      count += increment;
-      if (count < target) {
-        counter.textContent = Math.floor(count);
-        setTimeout(updateCount, stepTime);
-      } else {
-        counter.textContent = target;
-      }
-    };
-
+    
+    // Use the enhanced counter animation
+    animateCounterWithImpact(counter, target, 2500);
+    
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            updateCount();
+            // Add entrance effect
+            gsap.fromTo(counter, 
+              { scale: 0, opacity: 0, rotation: -180 },
+              { 
+                scale: 1, 
+                opacity: 1, 
+                rotation: 0, 
+                duration: 1, 
+                ease: 'back.out(1.7)',
+                onComplete: () => animateCounterWithImpact(counter, target, 2500)
+              }
+            );
             obs.unobserve(counter);
           }
         });
@@ -407,11 +714,17 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    The <span class="gradient-text">Fintech Revolution</span>: Pix Growth
+                    The <span class="cyber-text">FINTECH REVOLUTION</span>: 
+                    <br>
+                    <span class="neon-text">PIX IS CHANGING EVERYTHING</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    Modern, instant payment infrastructure is essential for success in Brazil.
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    <span class="font-bold text-green-600">BREAKING:</span> Modern, instant payment infrastructure is <span class="font-bold text-blue-600">NOT JUST ESSENTIAL</span> - 
+                    it's the <span class="font-bold text-purple-600">DIFFERENCE BETWEEN SUCCESS AND FAILURE</span> in Brazil!
                 </p>
+                <div class="mt-6 inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl animate-pulse">
+                    💳 PIX: THE PAYMENT REVOLUTION THAT'S TRANSFORMING BRAZIL
+                </div>
             </div>
             
             <div class="chart-container bg-white rounded-2xl shadow-2xl p-8">
@@ -429,11 +742,17 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Integrated Solutions for <span class="gradient-text">Core Pain Points</span>
+                    <span class="cyber-text">REVOLUTIONARY SOLUTIONS</span> for 
+                    <br>
+                    <span class="neon-text">CRITICAL PAIN POINTS</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                    LexBridge-Payoneer alliance tackles critical U.S. company challenges in Brazil.
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    <span class="font-bold text-red-600">STOP SUFFERING:</span> The <span class="font-bold text-blue-600">LexBridge-Payoneer alliance</span> doesn't just tackle challenges - 
+                    we <span class="font-bold text-green-600">ELIMINATE THEM COMPLETELY</span> and transform your Brazilian expansion from nightmare to dream!
                 </p>
+                <div class="mt-6 inline-block bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl animate-pulse">
+                    ⚡ FROM CHALLENGES TO OPPORTUNITIES IN SECONDS!
+                </div>
             </div>
             
             <!-- Solution Tabs -->
@@ -560,13 +879,21 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="container mx-auto px-6">
         <!-- Heading -->
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">
-                The Partnership Opportunity: A Unified Value Proposition
+            <h2 class="text-4xl md:text-5xl font-bold text-[#003366] mb-6">
+                <span class="cyber-text">THE ULTIMATE PARTNERSHIP:</span>
+                <br>
+                <span class="neon-text">UNIFIED POWER</span>
+                <br>
+                <span class="gradient-text">UNLIMITED POSSIBILITIES</span>
             </h2>
-            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-                By combining LexBridge's legal authority with Payoneer's financial infrastructure, we create an unmatched "one-stop-shop" solution. 
-                This partnership strengthens your client offerings, creates new revenue opportunities, and solidifies your position as the premier guide for U.S. companies entering Brazil.
+            <p class="mt-4 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <span class="font-bold text-blue-600">BREAKING NEWS:</span> By combining <span class="font-bold text-green-600">LexBridge's legal authority</span> with 
+                <span class="font-bold text-purple-600">Payoneer's financial infrastructure</span>, we create an <span class="font-bold text-red-600">UNMATCHED "ONE-STOP-SHOP" SOLUTION</span> 
+                that will revolutionize Brazilian market entry forever!
             </p>
+            <div class="mt-6 inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-2xl animate-pulse">
+                🌟 THE PARTNERSHIP THAT WILL CHANGE EVERYTHING
+            </div>
         </div>
 
         <!-- Cards -->
@@ -626,16 +953,56 @@ document.addEventListener("DOMContentLoaded", () => {
     </script>
 </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="mb-8">
-                <h3 class="text-2xl font-bold mb-4">Payoneer <span class="text-yellow-400">&</span> LexBridge</h3>
-                <p class="opacity-75">The ultimate strategic alliance for Brazilian market expansion</p>
+    <!-- Enhanced Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 text-white py-16 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full animate-ping"></div>
+            <div class="absolute top-20 right-20 w-24 h-24 bg-purple-500 rounded-full animate-pulse"></div>
+            <div class="absolute bottom-20 left-1/4 w-28 h-28 bg-green-500 rounded-full animate-bounce"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <div class="mb-12">
+                <h3 class="text-4xl font-bold mb-6">
+                    <span class="cyber-text">Payoneer</span> 
+                    <span class="text-yellow-400 text-5xl mx-4">⚡</span> 
+                    <span class="neon-text">LexBridge</span>
+                </h3>
+                <p class="text-xl opacity-90 mb-6">The <span class="font-bold text-yellow-400">ULTIMATE STRATEGIC ALLIANCE</span> for Brazilian market expansion</p>
+                <div class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 px-8 py-4 rounded-full font-bold text-lg shadow-2xl animate-pulse">
+                    🚀 READY TO REVOLUTIONIZE YOUR BUSINESS?
+                </div>
             </div>
+            
+            <!-- Enhanced contact section -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="holographic-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-4 neon-text">🚀 Get Started Today</h4>
+                    <p class="mb-4">Ready to conquer the Brazilian market? Let's make it happen!</p>
+                    <a href="mailto:partnerships@payoneer.com?subject=LexBridge%20Partnership%20Inquiry" 
+                       class="cyber-button inline-block px-6 py-3 rounded-lg">
+                        📧 Contact Us Now
+                    </a>
+                </div>
+                <div class="holographic-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-4 neon-text">💡 Learn More</h4>
+                    <p class="mb-4">Discover how this alliance can transform your business strategy</p>
+                    <a href="#solution" class="cyber-button inline-block px-6 py-3 rounded-lg">
+                        🔍 Explore Solutions
+                    </a>
+                </div>
+            </div>
+            
             <div class="border-t border-gray-700 pt-8">
-                <p>&copy; 2025 Payoneer Inc. All rights reserved.</p>
-                <p class="text-sm mt-2 opacity-75">Conceptual strategic partnership proposal with LexBridge Legal.</p>
+                <p class="text-lg">&copy; 2025 Payoneer Inc. All rights reserved.</p>
+                <p class="text-sm mt-2 opacity-75">The most powerful strategic partnership proposal in Brazilian expansion history.</p>
+                <div class="mt-4 flex justify-center space-x-4">
+                    <span class="text-yellow-400">⚡</span>
+                    <span class="text-blue-400">🚀</span>
+                    <span class="text-green-400">🌟</span>
+                    <span class="text-purple-400">💎</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -643,11 +1010,88 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- JavaScript -->
     <script>
         // Initialize GSAP
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
-        // Mobile menu functionality
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            // Add mobile menu logic here
+        // Particle System Configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: ['#00d4ff', '#ff6b35', '#8b5cf6', '#00ff88'] },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00d4ff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Loading Screen Management
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                gsap.to(loadingScreen, {
+                    opacity: 0,
+                    duration: 1,
+                    onComplete: () => {
+                        loadingScreen.style.display = 'none';
+                        // Trigger entrance animations
+                        gsap.from('body', { opacity: 0, duration: 1 });
+                    }
+                });
+            }, 2000);
+        });
+        
+        // Enhanced Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-50 transform translate-x-full transition-transform duration-300';
+        mobileMenu.innerHTML = `
+            <div class="flex justify-between items-center p-6">
+                <div class="text-2xl font-bold text-white">🚀 Payoneer & LexBridge</div>
+                <button id="close-menu" class="text-white text-3xl">&times;</button>
+            </div>
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="#market" class="text-2xl text-white hover:text-yellow-400 transition-colors">The Market</a>
+                <a href="#fintech" class="text-2xl text-white hover:text-yellow-400 transition-colors">Fintech Revolution</a>
+                <a href="#solution" class="text-2xl text-white hover:text-yellow-400 transition-colors">Our Solution</a>
+                <a href="#alliance" class="text-2xl text-white hover:text-yellow-400 transition-colors">The Alliance</a>
+            </div>
+        `;
+        document.body.appendChild(mobileMenu);
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+        
+        document.getElementById('close-menu').addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
         });
         
         // Smooth scrolling for navigation links
@@ -786,12 +1230,21 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        // GSAP Animations
+        // Enhanced GSAP Animations
         gsap.from('.hero-gradient h1', {
-            duration: 1.5,
+            duration: 2,
             y: 100,
             opacity: 0,
-            ease: 'power3.out'
+            ease: 'power3.out',
+            onComplete: () => {
+                // Add typing effect to cyber-text elements
+                gsap.to('.cyber-text', {
+                    duration: 0.1,
+                    textShadow: '0 0 20px currentColor',
+                    yoyo: true,
+                    repeat: 3
+                });
+            }
         });
         
         gsap.from('.hero-gradient p', {
@@ -811,17 +1264,47 @@ document.addEventListener("DOMContentLoaded", () => {
             stagger: 0.2
         });
         
-        // Scroll-triggered animations
+        // Enhanced text animations
+        gsap.from('.neon-text', {
+            duration: 1.5,
+            opacity: 0,
+            scale: 0.8,
+            ease: 'back.out(1.7)',
+            delay: 1,
+            stagger: 0.1
+        });
+        
+        // Floating elements enhanced animation
+        gsap.to('.floating-3d', {
+            y: -30,
+            rotationY: 360,
+            duration: 8,
+            ease: 'none',
+            repeat: -1,
+            stagger: 0.5
+        });
+        
+        // Enhanced Scroll-triggered animations
         gsap.from('.stat-counter', {
             scrollTrigger: {
                 trigger: '.stat-counter',
                 start: 'top 80%'
             },
-            duration: 1,
-            y: 50,
+            duration: 1.5,
+            y: 100,
             opacity: 0,
-            ease: 'power3.out',
-            stagger: 0.2
+            scale: 0.5,
+            ease: 'back.out(1.7)',
+            stagger: 0.3,
+            onComplete: () => {
+                // Add glow effect after animation
+                gsap.to('.stat-counter', {
+                    duration: 0.5,
+                    textShadow: '0 0 20px currentColor',
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
         });
         
         gsap.from('.card-hover', {
@@ -829,16 +1312,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 trigger: '.card-hover',
                 start: 'top 80%'
             },
-            duration: 0.8,
-            y: 50,
+            duration: 1.2,
+            y: 100,
             opacity: 0,
+            rotationY: 45,
             ease: 'power3.out',
-            stagger: 0.1
+            stagger: 0.2
         });
         
-        // Parallax effect for floating elements
+        // Holographic card effects
+        gsap.from('.holographic-card', {
+            scrollTrigger: {
+                trigger: '.holographic-card',
+                start: 'top 80%'
+            },
+            duration: 1.5,
+            y: 80,
+            opacity: 0,
+            scale: 0.8,
+            rotationX: 15,
+            ease: 'power3.out',
+            stagger: 0.3
+        });
+        
+        // Enhanced Parallax effects for floating elements
         gsap.to('.floating', {
-            y: -50,
+            y: -100,
+            rotationY: 180,
             ease: 'none',
             scrollTrigger: {
                 trigger: '.hero-gradient',
@@ -847,6 +1347,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 scrub: true
             }
         });
+        
+        gsap.to('.floating-3d', {
+            y: -150,
+            rotationX: 360,
+            rotationZ: 180,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero-gradient',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+        
+        // Interactive mouse effects
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            gsap.to('.floating-3d', {
+                duration: 1,
+                x: (clientX - centerX) * 0.02,
+                y: (clientY - centerY) * 0.02,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Enhanced counter animation with sound effects simulation
+        function animateCounterWithImpact(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start);
+                    // Add visual impact effect
+                    gsap.to(element, {
+                        duration: 0.1,
+                        scale: 1.2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                    // Final celebration effect
+                    gsap.to(element, {
+                        duration: 0.5,
+                        scale: 1.1,
+                        textShadow: '0 0 30px currentColor',
+                        yoyo: true,
+                        repeat: 2
+                    });
+                }
+            }
+            
+            updateCounter();
+        }
     </script>
 </body>
 </html>
